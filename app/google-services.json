@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "845173969203",
+    "project_id": "taekwonify",
+    "storage_bucket": "taekwonify.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:845173969203:android:e290238df0b791e7e12e46",
+        "android_client_info": {
+          "package_name": "com.example.mae_taekwonify"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "845173969203-iftt600g1lk4adv38qn9geg2s4q997oq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBVY4Hy-9WtQZMp7E-AiIZc7iuapn_uxrE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "845173969203-iftt600g1lk4adv38qn9geg2s4q997oq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:845173969203:android:7d9cb29a45486884e12e46",
+        "android_client_info": {
+          "package_name": "com.example.taekwonify"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "845173969203-iftt600g1lk4adv38qn9geg2s4q997oq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBVY4Hy-9WtQZMp7E-AiIZc7iuapn_uxrE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "845173969203-iftt600g1lk4adv38qn9geg2s4q997oq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
