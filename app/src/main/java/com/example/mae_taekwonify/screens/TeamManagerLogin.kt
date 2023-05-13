@@ -160,7 +160,7 @@ fun TeamManagerLogin(navController: NavHostController, vm: LoginViewModel = view
             )
 
             Image(
-                painter = painterResource(id = com.example.mae_taekwonify.R.drawable.taekwondo_img),
+                painter = painterResource(id = R.drawable.taekwondo_img),
                 contentDescription = stringResource(id = com.example.mae_taekwonify.R.string.taekwondo_img),
                 contentScale = ContentScale.Fit,
                 modifier = Modifier

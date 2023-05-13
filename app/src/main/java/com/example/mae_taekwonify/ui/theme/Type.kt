@@ -47,18 +47,23 @@ val Montserrat = FontFamily(
     Font(R.font.montserrat_regular),
     Font(R.font.montserrat_bold, FontWeight.Bold)
 )
+
+val OpenSans = FontFamily(
+    Font(R.font.opensans_regular),
+    Font(R.font.opensans_bold, FontWeight.Bold)
+)
 // Set of Material typography styles to start with
 val CustomTypography = Typography(
     h1 = TextStyle(
         fontFamily = Oswald,
         fontWeight = FontWeight.W900,
-        fontSize = 45.sp,
+        fontSize = 40.sp,
         color = Color.White,
         ),
     h2 = TextStyle(
         fontFamily = Oswald,
         fontWeight = FontWeight.W900,
-        fontSize = 45.sp,
+        fontSize = 40.sp,
         color = PrimaryColorRed,
     ),
     h3 = TextStyle(
@@ -74,11 +79,23 @@ val CustomTypography = Typography(
         color = Color.Black,
         textDecoration = TextDecoration.Underline
     ),
+    h5 = TextStyle(
+        fontFamily = OpenSans,
+        fontWeight = FontWeight.Normal,
+        fontSize = 20.sp,
+        color = Color.Black
+    ),
+    h6 = TextStyle(
+        fontFamily = OpenSans,
+        fontWeight = FontWeight.Normal,
+        fontSize = 10.sp,
+        color = Color.White
+    ),
 
     button = TextStyle(
         fontFamily = Montserrat,
         fontWeight = FontWeight.Normal,
         fontSize = 20.sp,
-    )
+    ),
 
 )

@@ -5,4 +5,11 @@ sealed class Routes(val route: String){
     object TeamManagerLogin : Routes("TeamManagerLogin")
     object TeamManagerSignUp : Routes("TeamManagerSignUp")
     object Homepage : Routes("Homepage")
+    object ParticipantList : Routes("ParticipantList")
+    object ManageTeam : Routes("ManageTeam")
+    object ManageFollowing : Routes("ManageFollowing")
+    object MedalTally : Routes("MedalTally")
+    object CompetitionProgress : Routes("CompetitionProgress")
+    object CompetitionInfo : Routes("CompetitionInfo")
+    object TeamManagerHelpdesk : Routes("TeamManagerHelpdesk")
 }
