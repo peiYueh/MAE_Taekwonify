@@ -8,6 +8,8 @@ data class Participants(
     var Password:String = "",
     var Team:String = "",
     var profilePic:String = "",
+    var Event:String = "",
+    var Gender:String = "",
     var id:String = ""
 )
 
