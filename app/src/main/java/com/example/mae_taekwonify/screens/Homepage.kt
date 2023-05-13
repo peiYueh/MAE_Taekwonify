@@ -123,7 +123,7 @@ fun Homepage(navController: NavHostController,vm: UserDataViewModel = viewModel(
                             verticalArrangement = Arrangement.Center
                         ){
                             Image(painter = painterResource(id = R.drawable.participants), contentDescription = null,
-                                modifier = Modifier.clickable { navController.navigate(Routes.ParticipantList.route) }.size(55.dp))
+                                modifier = Modifier.clickable { navController.navigate(Routes.TeamList.route) }.size(55.dp))
                             Text(text = "Participant \nInformation",textAlign = TextAlign.Center,style = MaterialTheme.typography.h6)
                         }
                         Column(

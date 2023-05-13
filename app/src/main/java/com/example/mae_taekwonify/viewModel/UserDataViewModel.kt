@@ -28,6 +28,7 @@ class UserDataViewModel ():  ViewModel() {
 
 }
 
+
 //retrieve data
 suspend fun getDataFromFireStore(): UsersData {
 
@@ -37,7 +38,7 @@ suspend fun getDataFromFireStore(): UsersData {
 
     try {
 
-        db.collection("RoadHelp Users").get().await().map {
+        db.collection("Team Managers").get().await().map {
             val result = it.toObject(UsersData::class.java)
             data = result
 
