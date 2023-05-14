@@ -77,7 +77,7 @@ fun ParticipantList(navController: NavHostController,TeamName: String, vm: Parti
                                     modifier = Modifier.fillMaxWidth()
                                         .background(MaterialTheme.colors.primary)
                                             //CHANGE ROUTE HEREEEE [darrshan's name , aya change d]
-                                        .clickable { navController.navigate(Routes.ParticipantList.route+"/"+getData[indexNumber].Name)}
+                                        .clickable { navController.navigate(Routes.ParticipantDetails.route+"/"+getData[indexNumber].Name)}
                                 ){
                                     Image(
                                         painter = rememberAsyncImagePainter(getData[indexNumber].profilePic),

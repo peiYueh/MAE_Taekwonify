@@ -29,6 +29,10 @@ fun ScreenMain(auth: FirebaseAuth){
             backStackEntry.arguments?.getString("TeamName")
                 ?.let { ParticipantList(navController = navController, it) }
         }
+        composable(route = Routes.ParticipantDetails.route+"/{ParticipantName}"){backStackEntry ->
+            backStackEntry.arguments?.getString("ParticipantName")
+                ?.let { ParticipantDetails(navController = navController, it) }
+        }
         composable(route = Routes.ManageTeam.route){
             ManageTeam(navController = navController)
         }

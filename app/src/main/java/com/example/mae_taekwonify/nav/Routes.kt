@@ -7,6 +7,7 @@ sealed class Routes(val route: String){
     object Homepage : Routes("Homepage")
     object TeamList : Routes("TeamList")
     object ParticipantList : Routes("ParticipantList")
+    object ParticipantDetails : Routes("ParticipantDetails")
     object ManageTeam : Routes("ManageTeam")
     object ManageFollowing : Routes("ManageFollowing")
     object MedalTally : Routes("MedalTally")

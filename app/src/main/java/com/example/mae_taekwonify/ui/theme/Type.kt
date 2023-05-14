@@ -96,6 +96,10 @@ val CustomTypography = Typography(
         fontWeight = FontWeight.W900,
         fontSize = 25.sp,
     ),
+    body2 = TextStyle(
+        fontFamily = Montserrat,
+        fontSize = 20.sp,
+    ),
 
     button = TextStyle(
         fontFamily = Montserrat,
