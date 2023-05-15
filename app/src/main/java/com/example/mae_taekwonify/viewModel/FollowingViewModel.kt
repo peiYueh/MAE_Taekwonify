@@ -1,23 +1,19 @@
-package com.example.mae_taekwondo.viewModel
+package com.example.mae_taekwonify.viewModel
 
 import android.util.Log
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.mae_taekwondo.viewModel.getParticipantDataFromFireStore
 import com.example.mae_taekwonify.models.Followed
 import com.example.mae_taekwonify.models.Participants
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.ValueEventListener
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreException
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 
-
-class ParticipantDataViewModel : ViewModel (){
-
-    val state = mutableStateOf(mutableListOf(Participants()))
+class FollowingViewModel : ViewModel(){
+    val state = mutableStateOf(mutableListOf(Followed()))
 
     init {
         getParticipantData()
@@ -25,26 +21,23 @@ class ParticipantDataViewModel : ViewModel (){
 
     private fun getParticipantData(){
         viewModelScope.launch {
-            state.value = getParticipantDataFromFireStore()
+            state.value = getFollowingDataFromFireStore()
         }
     }
-
-
 }
 
-
 //retrieve data
-suspend fun getParticipantDataFromFireStore(): MutableList<Participants> {
+suspend fun getFollowingDataFromFireStore(): ArrayList<Followed> {
 
     val db = FirebaseFirestore.getInstance()
-    var data = Participants()
-    var dataList: ArrayList<Participants> = ArrayList()
+    var data = Followed()
+    var dataList: ArrayList<Followed> = ArrayList()
 
 
     try {
 
-        db.collection("Participant").get().await().map {
-            val result = it.toObject(Participants::class.java)
+        db.collection("FollowingFollowers").get().await().map {
+            val result = it.toObject(Followed::class.java)
             data = result
             dataList.add(data)
         }
@@ -53,4 +46,3 @@ suspend fun getParticipantDataFromFireStore(): MutableList<Participants> {
     }
     return dataList
 }
-

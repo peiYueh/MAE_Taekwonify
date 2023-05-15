@@ -13,10 +13,8 @@ class LoginViewModel() : ViewModel() {
     // Variables
     var email by mutableStateOf("")
     var password by mutableStateOf("")
-
     suspend fun logInWithEmail(): AuthResult? {
         return try {
-            //problem: email and password is empty
             val data = Firebase.auth
                 .signInWithEmailAndPassword(email, password)
                 .await()

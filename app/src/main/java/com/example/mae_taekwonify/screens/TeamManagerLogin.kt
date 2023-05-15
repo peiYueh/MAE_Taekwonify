@@ -130,9 +130,7 @@ fun TeamManagerLogin(navController: NavHostController, vm: LoginViewModel = view
                         scope.launch {
                             isLoading = true
                             val data = vm.logInWithEmail()
-                            println("HERE")
-                            println(email)
-                            println(password)
+                            println("THIS")
                             println(data)
                             if(data!= null) {
                                 navController.navigate(Routes.Homepage.route)
@@ -167,11 +165,10 @@ fun TeamManagerLogin(navController: NavHostController, vm: LoginViewModel = view
                     .size(300.dp)
                     .align(alignment = Alignment.End)
             )
+
         }
+
     }
-//    MAE_TaekwonifyTheme{
-//
-//
-//
-//    }
+
+
 }

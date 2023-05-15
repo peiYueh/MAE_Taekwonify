@@ -26,26 +26,26 @@ import androidx.navigation.NavHostController
 import com.example.mae_taekwonify.ui.theme.MAE_TaekwonifyTheme
 import com.example.mae_taekwonify.R
 import com.example.mae_taekwonify.nav.Routes
+import com.example.mae_taekwonify.viewModel.LoginViewModel
 import com.example.mae_taekwonify.viewModel.UserDataViewModel
 import com.example.mae_taekwonify.widgets.CustomTopBar
 //import com.example.mae_taekwonify.widgets.CustomBottomAppBar
 import com.example.mae_taekwonify.widgets.CustomButton
 //import com.example.mae_taekwonify.widgets.CustomTopAppBar
 import com.example.mae_taekwonify.widgets.IconButton
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.launch
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 //@Preview
 @Composable
-fun Homepage(navController: NavHostController,vm: UserDataViewModel = viewModel()){
-    val getData = vm.state.value
-    var name = "username"
-    name = getData.name
+fun Homepage(navController: NavHostController,vm: LoginViewModel = viewModel()){
+    val getData = vm.email
     Scaffold(
         topBar = {
             CustomTopBar(
                 navController = navController,
-                title = "Welcome User" + name,
+                title = "Welcome!",
                 showBackIcon = false,
             )
         }){
