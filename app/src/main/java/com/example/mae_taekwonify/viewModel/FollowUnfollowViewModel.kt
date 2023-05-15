@@ -43,12 +43,19 @@ class FollowUnfollowViewModel : ViewModel() {
     }
 
     fun deleteFollowingFromFirebase(
-        followID:String
+        followID:String,
+        context: android.content.Context
     ){
         val db: FirebaseFirestore = FirebaseFirestore.getInstance()
         db.collection("FollowingFollowers").document(followID)
             .delete()
-            .addOnSuccessListener { Log.d(TAG, "Unfollowed!") }
+            .addOnSuccessListener {
+                Toast.makeText(
+                    context,
+                    "Followed!",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
             .addOnFailureListener { e -> Log.w(TAG, "Error unfollowing account", e) }
     }
 }

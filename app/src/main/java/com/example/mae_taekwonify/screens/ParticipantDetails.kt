@@ -180,7 +180,7 @@ fun ParticipantDetails(navController: NavHostController, ParticipantName: String
                                     var followStatus by remember { mutableStateOf("FOLLOW") }
                                     var followID = ""
                                     for (follow in allFollowers){
-                                        if(follow.follower == userID && allData[indexNumber].EmailAdd == follow.following ){
+                                        if(follow.follower == userID && allData[indexNumber].id == follow.following ){
                                             followID = follow.id
                                             //user is following this participant
                                             followStatus = "UNFOLLOW"
@@ -198,7 +198,7 @@ fun ParticipantDetails(navController: NavHostController, ParticipantName: String
                                                       if(followStatus == "FOLLOW"){
                                                           //means follow the ppl
                                                           followID = followvm.addFollowingToFirebase(
-                                                              Following = allData[indexNumber].EmailAdd,
+                                                              Following = allData[indexNumber].id,
                                                               context = context
                                                           )
                                                           //return followID and set follow id
@@ -206,7 +206,8 @@ fun ParticipantDetails(navController: NavHostController, ParticipantName: String
                                                       }else{
                                                           //remove the person from database following list
                                                           followvm.deleteFollowingFromFirebase(
-                                                              followID = followID
+                                                              followID = followID,
+                                                              context = context
                                                           )
                                                           followStatus = "FOLLOW"
                                                       }
