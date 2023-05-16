@@ -9,9 +9,10 @@ sealed class Routes(val route: String){
     object ParticipantList : Routes("ParticipantList")
     object ParticipantDetails : Routes("ParticipantDetails")
     object ManageTeam : Routes("ManageTeam")
-    object ManageFollowing : Routes("ManageFollowing")
+    object FollowingParticipants : Routes("FollowingParticipants")
     object MedalTally : Routes("MedalTally")
     object CompetitionProgress : Routes("CompetitionProgress")
     object CompetitionInfo : Routes("CompetitionInfo")
     object TeamManagerHelpdesk : Routes("TeamManagerHelpdesk")
+    object EliminationChart : Routes("EliminationChart")
 }

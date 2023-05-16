@@ -25,6 +25,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import coil.compose.rememberAsyncImagePainter
 import com.example.mae_taekwondo.viewModel.ParticipantDataViewModel
+import com.example.mae_taekwonify.R
 import com.example.mae_taekwonify.models.Following
 import com.example.mae_taekwonify.models.TeamName
 import com.example.mae_taekwonify.nav.Routes
@@ -38,8 +39,8 @@ import com.google.firebase.auth.FirebaseAuth
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
-fun ParticipantDetails(navController: NavHostController, ParticipantName: String, vm: ParticipantDataViewModel = viewModel(), followingvm: FollowingViewModel = viewModel(), followvm: FollowUnfollowViewModel = viewModel()){
-    val allData= vm.state.value
+fun ParticipantDetails(navController: NavHostController, ParticipantName: String, vm: ParticipantDataViewModel = viewModel(), followingvm: FollowingViewModel = viewModel(), followvm: FollowUnfollowViewModel = viewModel()) {
+    val allData = vm.state.value
     val allFollowers = followingvm.state.value
     val userID = FirebaseAuth.getInstance().getCurrentUser()?.getUid();
     val context = LocalContext.current
@@ -51,13 +52,13 @@ fun ParticipantDetails(navController: NavHostController, ParticipantName: String
                 showBackIcon = true,
             )
         }
-    ){
+    ) {
         Column(
             modifier = Modifier.fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
 
-        ){
+        ) {
             Box() {
                 Text(
                     text = ParticipantName,
@@ -82,16 +83,16 @@ fun ParticipantDetails(navController: NavHostController, ParticipantName: String
                     .clip(RoundedCornerShape(20.dp))
                     .background(MaterialTheme.colors.secondary)
                     .padding(50.dp, 0.dp, 50.dp, 10.dp)
-            ){
+            ) {
                 LazyColumn(
                     modifier = Modifier
                         .fillMaxSize()
                         .padding(10.dp),
                     horizontalAlignment = Alignment.CenterHorizontally,
                     verticalArrangement = Arrangement.Center,
-                ){
-                    itemsIndexed(allData){indexNumber, string ->
-                        if(allData[indexNumber].Name == ParticipantName){
+                ) {
+                    itemsIndexed(allData) { indexNumber, string ->
+                        if (allData[indexNumber].Name == ParticipantName) {
                             //found the participant
                             //show image
                             Image(
@@ -108,31 +109,32 @@ fun ParticipantDetails(navController: NavHostController, ParticipantName: String
                                     .clip(RoundedCornerShape(20.dp))
                                     .background(MaterialTheme.colors.primary)
                                     .padding(10.dp)
-                            ){
+                            ) {
                                 Column(
                                     horizontalAlignment = Alignment.Start,
                                     verticalArrangement = Arrangement.Center,
                                     modifier = Modifier
+                                        .fillMaxWidth()
                                         .padding(30.dp)
-                                ){
+                                ) {
                                     Text(
                                         text = "Participant Details:",
                                         style = MaterialTheme.typography.body1,
                                     )
                                     Text(
-                                        text = "Team: "+allData[indexNumber].Team,
+                                        text = "Team: " + allData[indexNumber].Team,
                                         style = MaterialTheme.typography.body2,
                                     )
                                     Text(
-                                        text = "DOB: "+allData[indexNumber].DOB,
+                                        text = "DOB: " + allData[indexNumber].DOB,
                                         style = MaterialTheme.typography.body2,
                                     )
                                     Text(
-                                        text = "Gender: "+ allData[indexNumber].Gender,
+                                        text = "Gender: " + allData[indexNumber].Gender,
                                         style = MaterialTheme.typography.body2,
                                     )
                                     Text(
-                                        text = "Email: "+allData[indexNumber].EmailAdd,
+                                        text = "Email: " + allData[indexNumber].EmailAdd,
                                         style = MaterialTheme.typography.body2,
                                     )
 
@@ -144,90 +146,88 @@ fun ParticipantDetails(navController: NavHostController, ParticipantName: String
                                     var eventList = ""
                                     var i = 0;
                                     var event = allData[indexNumber].Event.split("|")
-                                    for (evt in event){
+                                    for (evt in event) {
                                         i++
-                                        if(eventList==""){
-                                            eventList += ""+i+". "
-                                        }else{
-                                            eventList += "\n"+i+". "
+                                        // retrieve event full name
+                                        when (evt) {
+
+                                            "I" -> eventList = "Poomsae Individual"
+                                            "p" -> eventList = "Poomsae Pair"
+                                            "T" -> eventList = "Poomsae Team"
+                                            "S-FIN" -> eventList = "Sparring Fin Weight"
+                                            "S-FLY" -> eventList = "Sparring Fly Weight"
+                                            "S-FEA" -> eventList = "Sparring Feather Weight"
+                                            "S-B" -> eventList = "Sparring Bantam Weight"
+                                            "S-W" -> eventList = "Sparring Wealther Weight"
+                                            "S-M" -> eventList = "Sparring Middle Weight"
+                                            "S-H" -> eventList = "Sparring Heavy Weight"
+                                            else -> {
+                                                eventList = "Sparring"
+                                            }
+                                            //print out all text
                                         }
-                                        if(evt == "I"){
-                                            eventList+="Poomsae Individual"
-                                        }else if(evt == "P"){
-                                            eventList+="Poomsae Pair"
-                                        }else if(evt == "T"){
-                                            eventList+="Poomsae Team"
-                                        }else{
-                                            //sparring
-                                            when (evt) {
-                                                "S-FIN" -> eventList+="Sparring Fin Weight"
-                                                "S-FLY" -> eventList+="Sparring Fly Weight"
-                                                "S-FEA" -> eventList+="Sparring Feather Weight"
-                                                "S-B" -> eventList+="Sparring Bantam Weight"
-                                                "S-W" -> eventList+="Sparring Wealther Weight"
-                                                "S-M" -> eventList+="Sparring Middle Weight"
-                                                "S-H" -> eventList+="Sparring Heavy Weight"
-                                                else -> {
-                                                    eventList+="Sparring"
-                                                }
+                                        Text(
+                                            text = eventList,
+                                            style = MaterialTheme.typography.body2,
+                                            modifier = Modifier
+                                                .clickable{
+                                                    navController.navigate(Routes.EliminationChart.route+"/"+evt+"|"+allData[indexNumber].Gender)
+                                                },
+                                        )
+                                    }
+                                        var followStatus by remember { mutableStateOf("FOLLOW") }
+                                        var followID = ""
+                                        for (follow in allFollowers) {
+                                            if (follow.follower == userID && allData[indexNumber].id == follow.following) {
+                                                followID = follow.id
+                                                //user is following this participant
+                                                followStatus = "UNFOLLOW"
+                                                break
                                             }
                                         }
-                                    }
-                                    Text(
-                                        text = eventList,
-                                        style = MaterialTheme.typography.body2,
-                                    )
-                                    var followStatus by remember { mutableStateOf("FOLLOW") }
-                                    var followID = ""
-                                    for (follow in allFollowers){
-                                        if(follow.follower == userID && allData[indexNumber].id == follow.following ){
-                                            followID = follow.id
-                                            //user is following this participant
-                                            followStatus = "UNFOLLOW"
-                                            break
+                                        //check database if followed, put it as followed, need to add a vm for following
+                                        Column(
+                                            modifier = Modifier.fillMaxWidth().fillMaxHeight(),
+                                            verticalArrangement = Arrangement.Center,
+                                            horizontalAlignment = Alignment.CenterHorizontally
+                                        ) {
+                                            Button(
+                                                onClick = {
+                                                    if (followStatus == "FOLLOW") {
+                                                        //means follow the ppl
+                                                        followID = followvm.addFollowingToFirebase(
+                                                            Following = allData[indexNumber].id,
+                                                            context = context
+                                                        )
+                                                        //return followID and set follow id
+                                                        followStatus = "UNFOLLOW"
+                                                    } else {
+                                                        //remove the person from database following list
+                                                        followvm.deleteFollowingFromFirebase(
+                                                            followID = followID,
+                                                            context = context
+                                                        )
+                                                        followStatus = "FOLLOW"
+                                                    }
+                                                },
+                                                colors = ButtonDefaults.outlinedButtonColors(
+                                                    backgroundColor = MaterialTheme.colors.onBackground
+                                                ),
+                                                modifier = Modifier
+                                                    .padding(top = 10.dp)
+                                            ) {
+                                                Text(text = followStatus)
+                                            }
                                         }
-                                    }
-                                    //check database if followed, put it as followed, need to add a vm for following
-                                    Column(
-                                        modifier = Modifier.fillMaxWidth().fillMaxHeight(),
-                                        verticalArrangement = Arrangement.Center,
-                                        horizontalAlignment = Alignment.CenterHorizontally
-                                    ){
-                                        Button(
-                                            onClick = {
-                                                      if(followStatus == "FOLLOW"){
-                                                          //means follow the ppl
-                                                          followID = followvm.addFollowingToFirebase(
-                                                              Following = allData[indexNumber].id,
-                                                              context = context
-                                                          )
-                                                          //return followID and set follow id
-                                                          followStatus = "UNFOLLOW"
-                                                      }else{
-                                                          //remove the person from database following list
-                                                          followvm.deleteFollowingFromFirebase(
-                                                              followID = followID,
-                                                              context = context
-                                                          )
-                                                          followStatus = "FOLLOW"
-                                                      }
-                                                      },
-                                            colors = ButtonDefaults.outlinedButtonColors(backgroundColor = MaterialTheme.colors.onBackground),
-                                            modifier = Modifier
-                                                .padding(top=10.dp)
-                                        ){
-                                            Text(text = followStatus)
-                                        }
-                                    }
 
                                 }
+
                             }
 
                         }
-
                     }
-                }
 
+                }
             }
         }
     }

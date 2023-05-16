@@ -11,8 +11,8 @@ import com.google.firebase.auth.FirebaseAuth
 @Composable
 fun ScreenMain(auth: FirebaseAuth){
     val navController = rememberNavController()
-
-    NavHost(navController = navController, startDestination = Routes.MedalTally.route){
+//+"/{EventCategory}"
+    NavHost(navController = navController, startDestination = Routes.TeamManagerLogin.route){
         composable(Routes.Menu.route){
             Home(navController = navController)
         }
@@ -33,11 +33,18 @@ fun ScreenMain(auth: FirebaseAuth){
             backStackEntry.arguments?.getString("ParticipantName")
                 ?.let { ParticipantDetails(navController = navController, it) }
         }
+        composable(route = Routes.EliminationChart.route+"/{EventCategory}"){backStackEntry ->
+            backStackEntry.arguments?.getString("EventCategory")
+                ?.let { EliminationChart(navController = navController, it) }
+        }
+//        composable(route = Routes.EliminationChart.route){
+//            EliminationChart(navController = navController)
+//        }
         composable(route = Routes.ManageTeam.route){
             ManageTeam(navController = navController)
         }
-        composable(route = Routes.ManageFollowing.route){
-            ManageFollowing(navController = navController)
+        composable(route = Routes.FollowingParticipants.route){
+            FollowingParticipants(navController = navController)
         }
         composable(route = Routes.MedalTally.route){
             MedalTally(navController = navController)

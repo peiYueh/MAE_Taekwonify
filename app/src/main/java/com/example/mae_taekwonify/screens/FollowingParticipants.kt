@@ -11,12 +11,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
+import com.example.mae_taekwonify.models.Following
 import com.example.mae_taekwonify.widgets.CustomTopBar
 
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
-fun ManageFollowing(navController: NavHostController){
+fun FollowingParticipants(navController: NavHostController){
     Scaffold(
         topBar = {
             CustomTopBar(

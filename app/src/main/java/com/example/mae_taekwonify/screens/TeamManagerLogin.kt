@@ -8,6 +8,7 @@ import androidx.compose.foundation.text.ClickableText
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AlternateEmail
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.runtime.*
@@ -95,7 +96,8 @@ fun TeamManagerLogin(navController: NavHostController, vm: LoginViewModel = view
                     },
                     label = { Text(text = "Enter email") },
                     placeholder = { Text(text = "Email") },
-                    modifier = Modifier.background(MaterialTheme.colors.primary)
+                    modifier = Modifier.background(MaterialTheme.colors.primary),
+                    singleLine = true
                 )
 
                 TextField(
@@ -103,6 +105,7 @@ fun TeamManagerLogin(navController: NavHostController, vm: LoginViewModel = view
                     onValueChange = {
                         vm.password = it
                     },
+                    singleLine = true,
                     label = { Text(text = "Enter password") },
                     placeholder = { Text(text = "Password") },
                     modifier = Modifier.background(MaterialTheme.colors.primary),
@@ -130,8 +133,6 @@ fun TeamManagerLogin(navController: NavHostController, vm: LoginViewModel = view
                         scope.launch {
                             isLoading = true
                             val data = vm.logInWithEmail()
-                            println("THIS")
-                            println(data)
                             if(data!= null) {
                                 navController.navigate(Routes.Homepage.route)
                             } else {

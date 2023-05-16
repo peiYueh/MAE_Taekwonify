@@ -143,6 +143,7 @@ fun TeamManagerSignUp(navController: NavController, auth: FirebaseAuth, vm: Regi
                     .padding(top = 20.dp),
             ){
                 TextField(
+                    singleLine = true,
                     value = name,
                     onValueChange = {
                         name = it
@@ -153,6 +154,7 @@ fun TeamManagerSignUp(navController: NavController, auth: FirebaseAuth, vm: Regi
                 )
 
                 TextField(
+                    singleLine = true,
                     value = teamName,
                     onValueChange = {
                         teamName = it
@@ -163,6 +165,7 @@ fun TeamManagerSignUp(navController: NavController, auth: FirebaseAuth, vm: Regi
                 )
 
                 TextField(
+                    singleLine = true,
                     value = email,
                     onValueChange = {
                         email = it
@@ -173,6 +176,7 @@ fun TeamManagerSignUp(navController: NavController, auth: FirebaseAuth, vm: Regi
                 )
 
                 TextField(
+                    singleLine = true,
                     value = phone,
                     onValueChange = {
                         phone = it
@@ -183,6 +187,7 @@ fun TeamManagerSignUp(navController: NavController, auth: FirebaseAuth, vm: Regi
                 )
 
                 TextField(
+                    singleLine = true,
                     value = password,
                     onValueChange = {
                         password = it

@@ -7,6 +7,7 @@ val PrimaryColorBeige = "#F3EED9".color
 val PrimaryColorRed = "#780000".color
 val ActionBlue = "#003049".color
 val TopAppBrown = "#856C68".color
+val selectedYellow = "#FFEFAD".color
 
 val String.color
     get() = Color(android.graphics.Color.parseColor(this))
