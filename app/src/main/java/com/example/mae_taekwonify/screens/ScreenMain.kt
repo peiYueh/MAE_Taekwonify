@@ -12,7 +12,7 @@ import com.google.firebase.auth.FirebaseAuth
 fun ScreenMain(auth: FirebaseAuth){
     val navController = rememberNavController()
 //+"/{EventCategory}"
-    NavHost(navController = navController, startDestination = Routes.TeamManagerLogin.route){
+    NavHost(navController = navController, startDestination = Routes.TeamManagerHelpdesk.route){
         composable(Routes.Menu.route){
             Home(navController = navController)
         }

@@ -13,6 +13,7 @@ private val DarkColorPalette = darkColors(
     onBackground = ActionBlue,
     primaryVariant = TopAppBrown,
     onPrimary = selectedYellow,
+    onSecondary = selectedBrown,
 )
 
 private val LightColorPalette = lightColors(
@@ -22,6 +23,7 @@ private val LightColorPalette = lightColors(
     onBackground = ActionBlue,
     primaryVariant = TopAppBrown,
     onPrimary = selectedYellow,
+    onSecondary = selectedBrown,
 
     /* Other default colors to override
     background = Color.White,

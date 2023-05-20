@@ -110,4 +110,11 @@ val CustomTypography = Typography(
         color = Color.White
     ),
 
+    subtitle1 = TextStyle(
+        fontFamily = Montserrat,
+        fontWeight = FontWeight.Normal,
+        fontSize = 15.sp,
+        color = Color.Black
+    ),
+
 )
