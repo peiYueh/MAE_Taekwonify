@@ -113,7 +113,6 @@ fun TeamList(navController: NavHostController){
                                     style = MaterialTheme.typography.body1,
                                 )
                             }
-
                         }
                     }
                 }

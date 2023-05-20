@@ -139,7 +139,7 @@ fun Homepage(navController: NavHostController,vm: LoginViewModel = viewModel()){
                             verticalArrangement = Arrangement.Center
                         ){
                             Image(painter = painterResource(id = R.drawable.followed), contentDescription = null,
-                                modifier = Modifier.clickable { navController.navigate(Routes.ManageFollowing.route) }.size(55.dp))
+                                modifier = Modifier.clickable { navController.navigate(Routes.FollowingParticipants.route) }.size(55.dp))
                             Text(text = "My Following", textAlign = TextAlign.Center,style = MaterialTheme.typography.h6)
                         }
                     }
