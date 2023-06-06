@@ -1,9 +1,7 @@
 package com.example.mae_taekwonify.screens
 
 import android.annotation.SuppressLint
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
+import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
@@ -136,12 +134,159 @@ fun TeamManagerHelpdesk(navController: NavHostController, sendChatvm: SendChatSu
                     .background(MaterialTheme.colors.secondary)
             ){
                 if(viewSelected == "1"){
-                    //display by post
+                    //display by FAQ enable scrolling
+                    Column(
+                        verticalArrangement = Arrangement.SpaceBetween,
+                        modifier = Modifier
+                            .fillMaxHeight()
+                            .verticalScroll(rememberScrollState())
+                    ){
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth(),
+                            horizontalArrangement = Arrangement.Center,
+                        ){
+                            Column(
+                                modifier = Modifier
+                                    .fillMaxWidth(0.7f)
+                                    .padding(15.dp)
+                                    .clip(RoundedCornerShape(25.dp))
+                                    .background(MaterialTheme.colors.primary)
+                                    .padding(15.dp)
+                            ){
+                                Text(
+                                    text= "How can participants register for the tournament?",
+                                    style = MaterialTheme.typography.body1,
+                                )
+                                Text(
+                                    text= "Team manager can register their participants online through our tournament application by filling out the registration form and submitting the required information.",
+                                    style = MaterialTheme.typography.body2,
+                                )
+                            }
+                        }
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth(),
+                            horizontalArrangement = Arrangement.Center,
+                        ){
+                            Column(
+                                modifier = Modifier
+                                    .fillMaxWidth(0.7f)
+                                    .padding(15.dp)
+                                    .clip(RoundedCornerShape(25.dp))
+                                    .background(MaterialTheme.colors.onPrimary)
+                                    .padding(15.dp)
+                            ){
+                                Text(
+                                    text= "Can participants represent a specific taekwondo school or organization?",
+                                    style = MaterialTheme.typography.body1,
+                                )
+                                Text(
+                                    text= "Yes, participants are welcome to represent their taekwondo schools or organizations. They should indicate their affiliation during the registration process. ",
+                                    style = MaterialTheme.typography.body2,
+                                )
+                            }
+                        }
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth(),
+                            horizontalArrangement = Arrangement.Center,
+                        ){
+                            Column(
+                                modifier = Modifier
+                                    .fillMaxWidth(0.7f)
+                                    .padding(15.dp)
+                                    .clip(RoundedCornerShape(25.dp))
+                                    .background(MaterialTheme.colors.primary)
+                                    .padding(15.dp)
+                            ){
+                                Text(
+                                    text= "Will there be any coaching or officiating opportunities available at the tournament?",
+                                    style = MaterialTheme.typography.body1,
+                                )
+                                Text(
+                                    text= "Yes, we welcome certified coaches and referees to be part of the tournament. Interested individuals can contact the organizers to inquire about coaching or officiating opportunities.",
+                                    style = MaterialTheme.typography.body2,
+                                )
+                            }
+                        }
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth(),
+                            horizontalArrangement = Arrangement.Center,
+                        ){
+                            Column(
+                                modifier = Modifier
+                                    .fillMaxWidth(0.7f)
+                                    .padding(15.dp)
+                                    .clip(RoundedCornerShape(25.dp))
+                                    .background(MaterialTheme.colors.onPrimary)
+                                    .padding(15.dp)
+                            ){
+                                Text(
+                                    text= "What are the rules and scoring criteria that will be followed in the tournament?",
+                                    style = MaterialTheme.typography.body1,
+                                )
+                                Text(
+                                    text= "The tournament will follow the rules and scoring criteria set by the World Taekwondo Federation (WTF) or the appropriate governing body. Participants should familiarize themselves with these rules prior to the event.",
+                                    style = MaterialTheme.typography.body2,
+                                )
+                            }
+                        }
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth(),
+                            horizontalArrangement = Arrangement.Center,
+                        ){
+                            Column(
+                                modifier = Modifier
+                                    .fillMaxWidth(0.7f)
+                                    .padding(15.dp)
+                                    .clip(RoundedCornerShape(25.dp))
+                                    .background(MaterialTheme.colors.primary)
+                                    .padding(15.dp)
+                            ){
+                                Text(
+                                    text= "Will there be any awards or recognition for the winners and participants?",
+                                    style = MaterialTheme.typography.body1,
+                                )
+                                Text(
+                                    text= "Yes, there will be awards and recognition for the winners in each category. Participants will receive certificates of participation, and winners will receive trophies, medals, or other appropriate accolades.",
+                                    style = MaterialTheme.typography.body2,
+                                )
+                            }
+                        }
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth(),
+                            horizontalArrangement = Arrangement.Center,
+                        ){
+                            Column(
+                                modifier = Modifier
+                                    .fillMaxWidth(0.7f)
+                                    .padding(15.dp)
+                                    .clip(RoundedCornerShape(25.dp))
+                                    .background(MaterialTheme.colors.onPrimary)
+                                    .padding(15.dp)
+                            ){
+                                Text(
+                                    text= "How can participants register for the tournament?",
+                                    style = MaterialTheme.typography.body1,
+                                )
+                                Text(
+                                    text= "Team manager can register their participants online through our tournament application by filling out the registration form and submitting the required information.",
+                                    style = MaterialTheme.typography.body2,
+                                )
+                            }
+                        }
+                    }
+
                 }else{
                     //display chat box
                     Column(
                         verticalArrangement = Arrangement.SpaceBetween,
-                        modifier = Modifier.fillMaxHeight()
+                        modifier = Modifier
+                            .fillMaxHeight()
                     ){
                         LazyColumn(){
                             // loop through the data
@@ -162,7 +307,7 @@ fun TeamManagerHelpdesk(navController: NavHostController, sendChatvm: SendChatSu
                                                     .fillMaxWidth(0.7f)
                                                     .padding(10.dp)
                                                     .clip(RoundedCornerShape(25.dp))
-                                                    .background(MaterialTheme.colors.primary)
+                                                    .background(MaterialTheme.colors.onPrimary)
                                                     .padding(10.dp)
                                             ){
                                                 Text(
@@ -187,7 +332,7 @@ fun TeamManagerHelpdesk(navController: NavHostController, sendChatvm: SendChatSu
                                                     .fillMaxWidth(0.7f)
                                                     .padding(10.dp)
                                                     .clip(RoundedCornerShape(25.dp))
-                                                    .background(MaterialTheme.colors.onPrimary)
+                                                    .background(MaterialTheme.colors.primary)
                                                     .padding(10.dp)
             //                                    .align(Alignment.TopCenter)
                                             ){

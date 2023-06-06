@@ -76,7 +76,6 @@ fun ParticipantList(navController: NavHostController,TeamName: String, vm: Parti
                                     verticalAlignment = Alignment.CenterVertically,
                                     modifier = Modifier.fillMaxWidth()
                                         .background(MaterialTheme.colors.primary)
-                                            //CHANGE ROUTE HEREEEE [darrshan's name , aya change d]
                                         .clickable { navController.navigate(Routes.ParticipantDetails.route+"/"+getData[indexNumber].Name)}
                                 ){
                                     Image(
