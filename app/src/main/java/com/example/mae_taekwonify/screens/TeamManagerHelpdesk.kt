@@ -5,6 +5,8 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.materialIcon
@@ -14,19 +16,29 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import com.example.mae_taekwonify.R
+import com.example.mae_taekwonify.models.Chat
+import com.example.mae_taekwonify.models.ChatSuppport
 import com.example.mae_taekwonify.nav.Routes
+import com.example.mae_taekwonify.viewModel.ChatViewModel
+import com.example.mae_taekwonify.viewModel.SendChatSupportViewModel
 import com.example.mae_taekwonify.widgets.CustomTopBar
 
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
-fun TeamManagerHelpdesk(navController: NavHostController){
+fun TeamManagerHelpdesk(navController: NavHostController, sendChatvm: SendChatSupportViewModel = viewModel(), chatDatavm: ChatViewModel = viewModel()){
+    val allChat = chatDatavm.state.value
+    val context = LocalContext.current
+    var sendMessage by rememberSaveable{ mutableStateOf("") }
+    var idCount = 1;
     Scaffold(
         topBar = {
             CustomTopBar(
@@ -131,51 +143,65 @@ fun TeamManagerHelpdesk(navController: NavHostController){
                         verticalArrangement = Arrangement.SpaceBetween,
                         modifier = Modifier.fillMaxHeight()
                     ){
-                        Column(){
-                            //contains chat
-                            Row(
-                                modifier = Modifier
-                                    .fillMaxWidth(),
-                                horizontalArrangement = Arrangement.Start,
-                            ){
-                                Box(
-                                    modifier = Modifier
-                                        .fillMaxWidth(0.7f)
-                                        .padding(10.dp)
-                                        .clip(RoundedCornerShape(25.dp))
-                                        .background(MaterialTheme.colors.primary)
-                                        .padding(10.dp)
-                                ){
-                                    Text(
-                                        text="Hey how are you",
-                                        style = MaterialTheme.typography.subtitle1,
-                                    )
+                        LazyColumn(){
+                            // loop through the data
+                            itemsIndexed(allChat){indexNumber, string ->
+                                idCount+=1
+                                if(allChat[indexNumber].Sender == "admin123"){
+                                    //msg from admin
+                                    Card(
+                                        backgroundColor = MaterialTheme.colors.secondary
+                                    ){
+                                        Row(
+                                            modifier = Modifier
+                                                .fillMaxWidth(),
+                                            horizontalArrangement = Arrangement.Start,
+                                        ){
+                                            Box(
+                                                modifier = Modifier
+                                                    .fillMaxWidth(0.7f)
+                                                    .padding(10.dp)
+                                                    .clip(RoundedCornerShape(25.dp))
+                                                    .background(MaterialTheme.colors.primary)
+                                                    .padding(10.dp)
+                                            ){
+                                                Text(
+                                                    text= allChat[indexNumber].Content,
+                                                    style = MaterialTheme.typography.subtitle1,
+                                                )
+                                            }
+                                        }
+                                    }
+                                }else{
+                                    //msg from user
+                                    Card(
+                                        backgroundColor = MaterialTheme.colors.secondary
+                                    ){
+                                        Row(
+                                            modifier = Modifier
+                                                .fillMaxWidth(),
+                                            horizontalArrangement = Arrangement.End,
+                                        ){
+                                            Box(
+                                                modifier = Modifier
+                                                    .fillMaxWidth(0.7f)
+                                                    .padding(10.dp)
+                                                    .clip(RoundedCornerShape(25.dp))
+                                                    .background(MaterialTheme.colors.onPrimary)
+                                                    .padding(10.dp)
+            //                                    .align(Alignment.TopCenter)
+                                            ){
+                                                Text(
+                                                    text= allChat[indexNumber].Content,
+                                                    style = MaterialTheme.typography.subtitle1,
+                                                )
+                                            }
+                                        }
+                                    }
                                 }
                             }
-
-                            Row(
-                                modifier = Modifier
-                                    .fillMaxWidth(),
-                                horizontalArrangement = Arrangement.End,
-                            ){
-                                Box(
-                                    modifier = Modifier
-                                        .fillMaxWidth(0.7f)
-                                        .padding(10.dp)
-                                        .clip(RoundedCornerShape(25.dp))
-                                        .background(MaterialTheme.colors.onPrimary)
-                                        .padding(10.dp)
-//                                    .align(Alignment.TopCenter)
-                                ){
-                                    Text(
-                                        text="I'm Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis nunc  purus, consectetur eu venenatis nec, vehicula ut libero. Vivamus  facilisis pulvinar. ",
-                                        style = MaterialTheme.typography.subtitle1,
-                                    )
-                                }
-                            }
-
                         }
-                        var sendMessage by rememberSaveable{ mutableStateOf("") }
+
                         Row(
                             modifier = Modifier
                                 .fillMaxWidth()
@@ -189,6 +215,7 @@ fun TeamManagerHelpdesk(navController: NavHostController){
                                 TextField(
                                     singleLine = true,
                                     value = sendMessage,
+                                    textStyle = MaterialTheme.typography.subtitle1,
                                     onValueChange = {
                                         sendMessage = it
                                     },
@@ -210,6 +237,18 @@ fun TeamManagerHelpdesk(navController: NavHostController){
                                         modifier = Modifier
                                             .clickable {
                                                 //send msg
+                                                sendChatvm.sendChatToFirebase(
+                                                    content = sendMessage,
+                                                    context = context,
+                                                    newID = idCount.toString()
+                                                )
+                                                // add msg to chat
+                                                allChat.add(Chat("na", "admin123", "na",sendMessage))
+                                                //clear text msg
+                                                sendMessage = ""
+
+
+
                                             }
                                             .size(40.dp)
                                     )

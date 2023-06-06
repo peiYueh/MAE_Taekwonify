@@ -97,7 +97,8 @@ fun TeamManagerLogin(navController: NavHostController, vm: LoginViewModel = view
                     label = { Text(text = "Enter email") },
                     placeholder = { Text(text = "Email") },
                     modifier = Modifier.background(MaterialTheme.colors.primary),
-                    singleLine = true
+                    singleLine = true,
+                    textStyle = MaterialTheme.typography.subtitle1
                 )
 
                 TextField(
@@ -108,6 +109,7 @@ fun TeamManagerLogin(navController: NavHostController, vm: LoginViewModel = view
                     singleLine = true,
                     label = { Text(text = "Enter password") },
                     placeholder = { Text(text = "Password") },
+                    textStyle = MaterialTheme.typography.subtitle1,
                     modifier = Modifier.background(MaterialTheme.colors.primary),
                     visualTransformation = if (showPassword) VisualTransformation.None else PasswordVisualTransformation(),
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),

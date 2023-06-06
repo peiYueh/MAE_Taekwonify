@@ -57,8 +57,8 @@ fun TeamManagerSignUp(navController: NavController, auth: FirebaseAuth, vm: Regi
     var validatePassword by rememberSaveable { mutableStateOf(true) }
     var isPasswordVisible by rememberSaveable { mutableStateOf(false) }
 
-    val validateNameError = "Plaase input a valid name"
-    val validateTeamNameError = "Plaase input a valid Team name"
+    val validateNameError = "Please input a valid name"
+    val validateTeamNameError = "Please input a valid Team name"
     val validateEmailError = "Please input a valid email"
     val validatePhoneError = "Please enter a valid Malaysia phone number"
     val validatePasswordError = "Please mix uppercase and lowercase letters and a number with a minimum length of 8 "
@@ -144,6 +144,7 @@ fun TeamManagerSignUp(navController: NavController, auth: FirebaseAuth, vm: Regi
             ){
                 TextField(
                     singleLine = true,
+                    textStyle = MaterialTheme.typography.subtitle1,
                     value = name,
                     onValueChange = {
                         name = it
@@ -155,6 +156,7 @@ fun TeamManagerSignUp(navController: NavController, auth: FirebaseAuth, vm: Regi
 
                 TextField(
                     singleLine = true,
+                    textStyle = MaterialTheme.typography.subtitle1,
                     value = teamName,
                     onValueChange = {
                         teamName = it
@@ -166,6 +168,7 @@ fun TeamManagerSignUp(navController: NavController, auth: FirebaseAuth, vm: Regi
 
                 TextField(
                     singleLine = true,
+                    textStyle = MaterialTheme.typography.subtitle1,
                     value = email,
                     onValueChange = {
                         email = it
@@ -177,6 +180,7 @@ fun TeamManagerSignUp(navController: NavController, auth: FirebaseAuth, vm: Regi
 
                 TextField(
                     singleLine = true,
+                    textStyle = MaterialTheme.typography.subtitle1,
                     value = phone,
                     onValueChange = {
                         phone = it
@@ -194,6 +198,7 @@ fun TeamManagerSignUp(navController: NavController, auth: FirebaseAuth, vm: Regi
                     },
                     label = { Text(text = "Enter password") },
                     placeholder = { Text(text = "Password") },
+                    textStyle = MaterialTheme.typography.subtitle1,
                     modifier = Modifier.background(MaterialTheme.colors.primary),
                     visualTransformation = if (showPassword) VisualTransformation.None else PasswordVisualTransformation(),
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),

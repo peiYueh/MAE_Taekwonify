@@ -66,9 +66,6 @@ fun Home(navController: NavHostController){
             ) {
                 Button(
                     onClick = {
-                        //nav to Participantlogin()
-                        /*NOT IMPLEMENTING*/
-
                     },
                     colors = ButtonDefaults.outlinedButtonColors(backgroundColor = MaterialTheme.colors.onBackground)
                 ) {
