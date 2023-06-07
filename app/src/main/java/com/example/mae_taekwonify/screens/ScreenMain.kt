@@ -12,7 +12,7 @@ import com.google.firebase.auth.FirebaseAuth
 fun ScreenMain(auth: FirebaseAuth){
     val navController = rememberNavController()
 //+"/{EventCategory}"
-    NavHost(navController = navController, startDestination = Routes.TeamManagerHelpdesk.route){
+    NavHost(navController = navController, startDestination = Routes.ManageTeam.route){
         composable(Routes.Menu.route){
             Home(navController = navController)
         }
@@ -33,13 +33,14 @@ fun ScreenMain(auth: FirebaseAuth){
             backStackEntry.arguments?.getString("ParticipantName")
                 ?.let { ParticipantDetails(navController = navController, it) }
         }
+        composable(route = Routes.ModifyParticipants.route+"/{ParticipantName}"){backStackEntry ->
+            backStackEntry.arguments?.getString("ParticipantName")
+                ?.let { ModifyParticipant(navController = navController, it) }
+        }
         composable(route = Routes.EliminationChart.route+"/{EventCategory}"){backStackEntry ->
             backStackEntry.arguments?.getString("EventCategory")
                 ?.let { EliminationChart(navController = navController, it) }
         }
-//        composable(route = Routes.EliminationChart.route){
-//            EliminationChart(navController = navController)
-//        }
         composable(route = Routes.ManageTeam.route){
             ManageTeam(navController = navController)
         }

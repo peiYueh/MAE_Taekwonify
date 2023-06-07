@@ -88,7 +88,6 @@ fun TeamManagerSignUp(navController: NavController, auth: FirebaseAuth, vm: Regi
             auth.createUserWithEmailAndPassword(email,password)
                 .addOnCompleteListener {
                     if(it.isSuccessful){
-                        println("AHAHHAHAHAH")
                         vm.addDataToFirebase(
                             name = name,
                             teamName = teamName,

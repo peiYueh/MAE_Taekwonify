@@ -15,4 +15,5 @@ sealed class Routes(val route: String){
     object CompetitionInfo : Routes("CompetitionInfo")
     object TeamManagerHelpdesk : Routes("TeamManagerHelpdesk")
     object EliminationChart : Routes("EliminationChart")
+    object ModifyParticipants : Routes("ModifyParticipants")
 }

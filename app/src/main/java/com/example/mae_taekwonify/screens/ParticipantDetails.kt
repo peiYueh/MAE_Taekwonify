@@ -191,32 +191,52 @@ fun ParticipantDetails(navController: NavHostController, ParticipantName: String
                                             verticalArrangement = Arrangement.Center,
                                             horizontalAlignment = Alignment.CenterHorizontally
                                         ) {
-                                            Button(
-                                                onClick = {
-                                                    if (followStatus == "FOLLOW") {
-                                                        //means follow the ppl
-                                                        followID = followvm.addFollowingToFirebase(
-                                                            Following = allData[indexNumber].id,
-                                                            context = context
-                                                        )
-                                                        //return followID and set follow id
-                                                        followStatus = "UNFOLLOW"
-                                                    } else {
-                                                        //remove the person from database following list
-                                                        followvm.deleteFollowingFromFirebase(
-                                                            followID = followID,
-                                                            context = context
-                                                        )
-                                                        followStatus = "FOLLOW"
+                                            Row(
+                                                horizontalArrangement = Arrangement.spacedBy(10.dp)
+                                            ){
+                                                Button(
+                                                    onClick = {
+                                                        if (followStatus == "FOLLOW") {
+                                                            //means follow the ppl
+                                                            followID = followvm.addFollowingToFirebase(
+                                                                Following = allData[indexNumber].id,
+                                                                context = context
+                                                            )
+                                                            //return followID and set follow id
+                                                            followStatus = "UNFOLLOW"
+                                                        } else {
+                                                            //remove the person from database following list
+                                                            followvm.deleteFollowingFromFirebase(
+                                                                followID = followID,
+                                                                context = context
+                                                            )
+                                                            followStatus = "FOLLOW"
+                                                        }
+                                                    },
+                                                    colors = ButtonDefaults.outlinedButtonColors(
+                                                        backgroundColor = MaterialTheme.colors.onBackground
+                                                    ),
+                                                    modifier = Modifier
+                                                        .padding(top = 10.dp)
+                                                ) {
+                                                    Text(text = followStatus)
+                                                }
+
+                                                if(allData[indexNumber].Team == "Selangor"){
+                                                    Button(
+                                                        onClick = {
+                                                            //go to modify page
+                                                            navController.navigate(Routes.ModifyParticipants.route+"/"+allData[indexNumber].Name)
+                                                        },
+                                                        colors = ButtonDefaults.outlinedButtonColors(
+                                                            backgroundColor = MaterialTheme.colors.onBackground
+                                                        ),
+                                                        modifier = Modifier
+                                                            .padding(top = 10.dp)
+                                                    ){
+                                                        Text(text = "Modify")
                                                     }
-                                                },
-                                                colors = ButtonDefaults.outlinedButtonColors(
-                                                    backgroundColor = MaterialTheme.colors.onBackground
-                                                ),
-                                                modifier = Modifier
-                                                    .padding(top = 10.dp)
-                                            ) {
-                                                Text(text = followStatus)
+                                                }
                                             }
                                         }
 
