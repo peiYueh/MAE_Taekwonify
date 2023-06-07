@@ -12,7 +12,7 @@ import com.google.firebase.auth.FirebaseAuth
 fun ScreenMain(auth: FirebaseAuth){
     val navController = rememberNavController()
 //+"/{EventCategory}"
-    NavHost(navController = navController, startDestination = Routes.CompetitionInfo.route){
+    NavHost(navController = navController, startDestination = Routes.CompetitionResult.route){
         composable(Routes.Menu.route){
             Home(navController = navController)
         }
@@ -64,6 +64,9 @@ fun ScreenMain(auth: FirebaseAuth){
         }
         composable(route = Routes.AddParticipant.route){
             AddParticipant(navController = navController)
+        }
+        composable(route = Routes.CompetitionResult.route){
+            CompetitionResult(navController = navController)
         }
 
 
