@@ -120,7 +120,6 @@ fun ModifyParticipant(navController: NavHostController, ParticipantName: String,
                     modifier = Modifier.padding(bottom = 5.dp)
                 ) {
                     Text(text = "Modify")
-
                 }
             }
         }

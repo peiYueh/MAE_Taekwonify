@@ -6,6 +6,7 @@ import androidx.compose.ui.text.ExperimentalTextApi
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.googlefonts.GoogleFont
 import androidx.compose.ui.text.style.TextDecoration
@@ -115,6 +116,14 @@ val CustomTypography = Typography(
         fontWeight = FontWeight.Normal,
         fontSize = 15.sp,
         color = Color.Black
+    ),
+
+    subtitle2 = TextStyle(
+        fontFamily = OpenSans,
+        fontWeight = FontWeight.Normal,
+        fontSize = 15.sp,
+        color = PrimaryColorRed,
+        fontStyle = FontStyle.Italic
     ),
 
 )

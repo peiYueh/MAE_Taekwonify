@@ -188,7 +188,7 @@ fun ManageTeam(navController: NavHostController, vm: BoutStatusViewModel = viewM
                         verticalArrangement = Arrangement.Center
                     ){
                         Image(painter = painterResource(id = R.drawable.add_member), contentDescription = null,
-                            modifier = Modifier.clickable { navController.navigate(Routes.MedalTally.route) }.size(55.dp))
+                            modifier = Modifier.clickable { navController.navigate(Routes.AddParticipant.route) }.size(55.dp))
                         Text(text = "Add Member",textAlign = TextAlign.Center,style = MaterialTheme.typography.h6)
                     }
                     // VIEW ALL MEMBER -> Lead to participant list

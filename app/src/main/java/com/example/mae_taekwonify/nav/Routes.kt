@@ -16,4 +16,5 @@ sealed class Routes(val route: String){
     object TeamManagerHelpdesk : Routes("TeamManagerHelpdesk")
     object EliminationChart : Routes("EliminationChart")
     object ModifyParticipants : Routes("ModifyParticipants")
+    object AddParticipant : Routes("AddParticipant")
 }
