@@ -91,7 +91,7 @@ fun FollowingParticipants(navController: NavHostController, vm: BoutStatusViewMo
                     .fillMaxWidth()
             ){
                 //participant - ring - bout
-                Box(
+                Column(
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(250.dp)
@@ -103,13 +103,13 @@ fun FollowingParticipants(navController: NavHostController, vm: BoutStatusViewMo
                         horizontalArrangement = Arrangement.Center,
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(5.dp, 2.dp, 5.dp, 0.dp)
+                            .padding(5.dp, 2.dp, 5.dp, 2.dp)
                             .background(MaterialTheme.colors.primary)
                     ){
                         Text(
                             text = "Upcoming Match",
-                            style = MaterialTheme.typography.body2,
-                            modifier = Modifier.width(200.dp)
+                            style = MaterialTheme.typography.body1,
+//                            modifier = Modifier.width(200.dp)
                         )
 
                     }
@@ -156,13 +156,13 @@ fun FollowingParticipants(navController: NavHostController, vm: BoutStatusViewMo
                                     horizontalArrangement = Arrangement.Start,
                                     modifier = Modifier
                                         .fillMaxWidth()
-                                        .padding(5.dp, 1.dp, 5.dp, 0.dp)
+                                        .padding(5.dp, 1.dp, 5.dp, 1.dp)
                                         .background(MaterialTheme.colors.primary)
                                 ){
                                     Text(
                                         text = allParticipants[indexNumber].Name,
                                         style = MaterialTheme.typography.body2,
-                                        modifier = Modifier.width(200.dp)
+                                        modifier = Modifier.width(250.dp)
                                     )
                                     Text(
                                         text = boutRing.toString(),

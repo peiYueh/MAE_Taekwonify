@@ -68,7 +68,7 @@ fun Homepage(navController: NavHostController,vm: LoginViewModel = viewModel()){
                     style = MaterialTheme.typography.h2,
                     modifier = Modifier
                         .align(Alignment.TopCenter)
-                        .padding(start = 3.dp),
+                        .padding(start = 2.dp),
                 )
             }
             Box(
@@ -204,7 +204,9 @@ fun Homepage(navController: NavHostController,vm: LoginViewModel = viewModel()){
                         Button(
                             modifier = Modifier
                                 .align(Alignment.BottomEnd),
-                            onClick = {/*TODO*/},
+                            onClick = {
+                                navController.navigate(Routes.Menu.route)
+                            },
                             colors = ButtonDefaults.outlinedButtonColors(backgroundColor = MaterialTheme.colors.onBackground)
                         ) {
                             Text(text = "Sign Out", fontSize = 10.sp)

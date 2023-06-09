@@ -7,12 +7,10 @@ import androidx.navigation.compose.rememberNavController
 import com.example.mae_taekwonify.nav.Routes
 import com.google.firebase.auth.FirebaseAuth
 
-//will have to auth firebaseauth soon refer to road help
 @Composable
 fun ScreenMain(auth: FirebaseAuth){
     val navController = rememberNavController()
-//+"/{EventCategory}"
-    NavHost(navController = navController, startDestination = Routes.CompetitionResult.route){
+    NavHost(navController = navController, startDestination = Routes.TeamManagerLogin.route){
         composable(Routes.Menu.route){
             Home(navController = navController)
         }
@@ -68,7 +66,5 @@ fun ScreenMain(auth: FirebaseAuth){
         composable(route = Routes.CompetitionResult.route){
             CompetitionResult(navController = navController)
         }
-
-
     }
 }

@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">Taekwonify</string>
     <string name="taekwondo_img">Taekwondo</string>
+    <string name="login_error_header">Login Error</string>
+    <string name="login_error_desc">Incorrect email address or password!</string>
+    <string name="error_icon">Show error icon</string>
+    <string name="password_hint">Password</string>
+    <string name="email_label">Enter email</string>
+    <string name="email_placeholder">Email</string>
 </resources>

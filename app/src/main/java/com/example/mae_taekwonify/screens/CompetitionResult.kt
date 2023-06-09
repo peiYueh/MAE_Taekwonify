@@ -71,26 +71,26 @@ fun CompetitionResult(navController: NavHostController){
                 ){
                     Column(
                         modifier = Modifier
-                            .fillMaxWidth(0.7f)
+                            .fillMaxWidth(1f)
                             .padding(15.dp)
                             .clip(RoundedCornerShape(25.dp))
                             .background(MaterialTheme.colors.onPrimary)
                             .padding(15.dp)
                     ){
                         Text(
-                            text= "Gold: " + goldMedalist,
+                            text= "Gold🥇: \n" + goldMedalist,
                             style = MaterialTheme.typography.body2,
                         )
                         Text(
-                            text= "Silver: " + silverMedalist,
+                            text= "Silver🥈: \n" + silverMedalist,
                             style = MaterialTheme.typography.body2,
                         )
                         Text(
-                            text= "Bronze: " + bronzeMedalist1,
+                            text= "Bronze🥉: \n" + bronzeMedalist1,
                             style = MaterialTheme.typography.body2,
                         )
                         Text(
-                            text= "Bronze: " + bronzeMedalist2,
+                            text= "Bronze🥉: \n" + bronzeMedalist2,
                             style = MaterialTheme.typography.body2,
                         )
                     }

@@ -3,9 +3,7 @@ package com.example.mae_taekwonify.screens
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.net.Uri
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
+import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
@@ -61,32 +59,33 @@ fun CompetitionInfo(navController: NavHostController){
                 modifier = Modifier
                     .clip(RoundedCornerShape(50.dp))
                     .fillMaxSize()
-                    .padding(50.dp, 0.dp, 50.dp, 20.dp)
+                    .padding(8.dp, 0.dp, 8.dp, 10.dp)
                     .clip(RoundedCornerShape(20.dp))
                     .background(MaterialTheme.colors.secondary)
-                    .padding(50.dp, 0.dp, 50.dp, 10.dp)
+                    .padding(8.dp, 0.dp, 8.dp, 10.dp)
             ){
                 Column(
                     modifier = Modifier
                         .fillMaxSize()
-                        .padding(10.dp),
+                        .padding(5.dp),
                     horizontalAlignment = Alignment.CenterHorizontally,
                     verticalArrangement = Arrangement.Center,
                 ){
                     Box(
                         modifier = Modifier
-                            .width(500.dp)
-                            .padding(10.dp)
+                            .width(550.dp)
+                            .padding(5.dp)
                             .clip(RoundedCornerShape(20.dp))
                             .background(MaterialTheme.colors.primary)
-                            .padding(10.dp)
+                            .padding(5.dp)
                     ){
                         Column(
                             horizontalAlignment = Alignment.Start,
                             verticalArrangement = Arrangement.Center,
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .padding(30.dp)
+                                .padding(5.dp)
+                                .verticalScroll(rememberScrollState())
                         ){
                             Text(
                                 text = "🏁 Competition Name:",
@@ -113,7 +112,7 @@ fun CompetitionInfo(navController: NavHostController){
                                 style = MaterialTheme.typography.body2,
                             )
                             Text(
-                                text = "🥋 Competition Organizer:",
+                                text = "🥋 Organizer:",
                                 style = MaterialTheme.typography.body1,
                             )
                             Text(

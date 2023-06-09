@@ -79,15 +79,15 @@ fun ParticipantDetails(navController: NavHostController, ParticipantName: String
                 modifier = Modifier
                     .clip(RoundedCornerShape(50.dp))
                     .fillMaxSize()
-                    .padding(50.dp, 0.dp, 50.dp, 20.dp)
+                    .padding(10.dp, 0.dp, 10.dp, 10.dp)
                     .clip(RoundedCornerShape(20.dp))
                     .background(MaterialTheme.colors.secondary)
-                    .padding(50.dp, 0.dp, 50.dp, 10.dp)
+                    .padding(8.dp, 0.dp, 8.dp, 10.dp)
             ) {
                 LazyColumn(
                     modifier = Modifier
                         .fillMaxSize()
-                        .padding(10.dp),
+                        .padding(5.dp),
                     horizontalAlignment = Alignment.CenterHorizontally,
                     verticalArrangement = Arrangement.Center,
                 ) {
@@ -104,18 +104,18 @@ fun ParticipantDetails(navController: NavHostController, ParticipantName: String
                             )
                             Box(
                                 modifier = Modifier
-                                    .width(500.dp)
-                                    .padding(10.dp)
+                                    .width(800.dp)
+                                    .padding(5.dp)
                                     .clip(RoundedCornerShape(20.dp))
                                     .background(MaterialTheme.colors.primary)
-                                    .padding(10.dp)
+                                    .padding(5.dp)
                             ) {
                                 Column(
                                     horizontalAlignment = Alignment.Start,
                                     verticalArrangement = Arrangement.Center,
                                     modifier = Modifier
                                         .fillMaxWidth()
-                                        .padding(30.dp)
+                                        .padding(5.dp)
                                 ) {
                                     Text(
                                         text = "Participant Details:",
@@ -234,7 +234,7 @@ fun ParticipantDetails(navController: NavHostController, ParticipantName: String
                                                         modifier = Modifier
                                                             .padding(top = 10.dp)
                                                     ){
-                                                        Text(text = "Modify")
+                                                        Text(text = "MODIFY")
                                                     }
                                                 }
                                             }

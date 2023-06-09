@@ -55,7 +55,7 @@ fun ManageTeam(navController: NavHostController, vm: BoutStatusViewModel = viewM
         Column(
             modifier = Modifier.fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
+            verticalArrangement = Arrangement.Top
 
         ) {
             Box() {
@@ -78,15 +78,15 @@ fun ManageTeam(navController: NavHostController, vm: BoutStatusViewModel = viewM
             }
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.Center,
+                verticalArrangement = Arrangement.Top,
                 modifier = Modifier
                     .fillMaxWidth()
             ) {
                 //participant - ring - bout
-                Box(
+                Column(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .height(400.dp)
+//                        .height(400.dp)
                         .padding(10.dp)
                         .background(MaterialTheme.colors.secondary)
                 ) {
@@ -94,13 +94,13 @@ fun ManageTeam(navController: NavHostController, vm: BoutStatusViewModel = viewM
                         horizontalArrangement = Arrangement.Center,
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(5.dp, 5.dp, 5.dp, 0.dp)
+                            .padding(5.dp, 5.dp, 5.dp, 1.dp)
                             .background(MaterialTheme.colors.primary)
                     ) {
                         Text(
                             text = "Upcoming Match",
-                            style = MaterialTheme.typography.body2,
-                            modifier = Modifier.width(250.dp)
+                            style = MaterialTheme.typography.body1,
+//                            modifier = Modifier.width(250.dp)
                         )
 
                     }
@@ -110,7 +110,7 @@ fun ManageTeam(navController: NavHostController, vm: BoutStatusViewModel = viewM
                                 //means the participant is followed
                                 //get all participant bout number
                                 var boutRing = 'A'
-                                var nearestBout = 0
+                                var nearestBout = 1
                                 for (bout in boutData) {
                                     if (bout.Blue == allParticipants[indexNumber].id || bout.Red == allParticipants[indexNumber].id) {
                                         //add to array list
@@ -121,21 +121,21 @@ fun ManageTeam(navController: NavHostController, vm: BoutStatusViewModel = viewM
                                         if (boutRing == 'A') {
                                             if (boutNumber > currentA) {
                                                 //determine the earliest bout
-                                                if (boutNumber < nearestBout || nearestBout == 0) {
+                                                if (boutNumber < nearestBout || nearestBout == 1) {
                                                     nearestBout = boutNumber
                                                 }
                                             }
                                         } else if (boutRing == 'B') {
                                             if (boutNumber > currentB) {
                                                 //determine the earliest bout
-                                                if (boutNumber < nearestBout || nearestBout == 0) {
+                                                if (boutNumber < nearestBout || nearestBout == 1) {
                                                     nearestBout = boutNumber
                                                 }
                                             }
                                         } else {
                                             if (boutNumber > currentC) {
                                                 //determine the earliest bout
-                                                if (boutNumber < nearestBout || nearestBout == 0) {
+                                                if (boutNumber < nearestBout || nearestBout == 1) {
                                                     nearestBout = boutNumber
                                                 }
                                             }
@@ -147,13 +147,13 @@ fun ManageTeam(navController: NavHostController, vm: BoutStatusViewModel = viewM
                                     horizontalArrangement = Arrangement.Start,
                                     modifier = Modifier
                                         .fillMaxWidth()
-                                        .padding(5.dp, 1.dp, 5.dp, 0.dp)
+                                        .padding(5.dp, 1.dp, 5.dp, 1.dp)
                                         .background(MaterialTheme.colors.primary)
                                 ) {
                                     Text(
                                         text = allParticipants[indexNumber].Name,
                                         style = MaterialTheme.typography.body2,
-                                        modifier = Modifier.width(200.dp)
+                                        modifier = Modifier.width(250.dp)
                                     )
                                     Text(
                                         text = boutRing.toString(),
@@ -163,7 +163,7 @@ fun ManageTeam(navController: NavHostController, vm: BoutStatusViewModel = viewM
                                     Text(
                                         text = nearestBout.toString(),
                                         style = MaterialTheme.typography.body2,
-                                        modifier = Modifier.width(50.dp)
+                                        modifier = Modifier.width(30.dp)
                                     )
 
                                 }
@@ -177,7 +177,7 @@ fun ManageTeam(navController: NavHostController, vm: BoutStatusViewModel = viewM
                     horizontalArrangement = Arrangement.SpaceBetween,
                     modifier = Modifier
                         .width(320.dp)
-                        .padding(top = 5.dp)
+                        .padding(10.dp)
                 ){
                     //onClickFun = { navController.navigate(Routes.Profile.route) }-> copy this soon
                     val iconModifier = Modifier

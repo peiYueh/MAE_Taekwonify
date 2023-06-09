@@ -11,8 +11,7 @@ import androidx.compose.foundation.text.ClickableText
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Visibility
-import androidx.compose.material.icons.filled.VisibilityOff
+import androidx.compose.material.icons.filled.*
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
@@ -22,10 +21,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.AnnotatedString
-import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.text.input.PasswordVisualTransformation
-import androidx.compose.ui.text.input.TextFieldValue
-import androidx.compose.ui.text.input.VisualTransformation
+import androidx.compose.ui.text.input.*
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
@@ -34,6 +30,7 @@ import com.example.mae_taekwonify.R
 import com.example.mae_taekwonify.nav.Routes
 import com.example.mae_taekwonify.ui.theme.MAE_TaekwonifyTheme
 import com.example.mae_taekwonify.viewModel.RegisterTeamManagerViewModel
+import com.example.mae_taekwonify.widgets.CustomOutlinedTextField
 import com.example.mae_taekwonify.widgets.CustomTopBar
 import com.google.firebase.auth.FirebaseAuth
 
@@ -141,78 +138,66 @@ fun TeamManagerSignUp(navController: NavController, auth: FirebaseAuth, vm: Regi
                     .width(350.dp)
                     .padding(top = 20.dp),
             ){
-                TextField(
-                    singleLine = true,
-                    textStyle = MaterialTheme.typography.subtitle1,
+                CustomOutlinedTextField(
                     value = name,
-                    onValueChange = {
-                        name = it
-                    },
-                    label = { Text(text = "Enter Team Manager Name") },
-                    placeholder = { Text(text = "Team Manager Name") },
-                    modifier = Modifier.background(MaterialTheme.colors.primary)
+                    onValueChangeFun = {name = it},
+                    showError = !validateName,
+                    labelText = "Enter Team Manager Name",
+                    errorMessage = validateNameError,
+                    leadingIconImageVector = Icons.Default.PermIdentity,
+                    keyboardOptions = KeyboardOptions(
+                        keyboardType = KeyboardType.Text,
+                        imeAction = ImeAction.Next
+                    )
                 )
-
-                TextField(
-                    singleLine = true,
-                    textStyle = MaterialTheme.typography.subtitle1,
+                CustomOutlinedTextField(
                     value = teamName,
-                    onValueChange = {
-                        teamName = it
-                    },
-                    label = { Text(text = "Enter Team Name") },
-                    placeholder = { Text(text = "Team Name") },
-                    modifier = Modifier.background(MaterialTheme.colors.primary)
+                    onValueChangeFun = {teamName = it},
+                    showError = !validateTeamName,
+                    labelText = "Enter Team Name",
+                    errorMessage = validateNameError,
+                    leadingIconImageVector = Icons.Default.PermIdentity,
+                    keyboardOptions = KeyboardOptions(
+                        keyboardType = KeyboardType.Text,
+                        imeAction = ImeAction.Next
+                    )
                 )
-
-                TextField(
-                    singleLine = true,
-                    textStyle = MaterialTheme.typography.subtitle1,
+                CustomOutlinedTextField(
                     value = email,
-                    onValueChange = {
-                        email = it
-                    },
-                    label = { Text(text = "Enter email") },
-                    placeholder = { Text(text = "Email") },
-                    modifier = Modifier.background(MaterialTheme.colors.primary)
+                    onValueChangeFun = {email = it},
+                    showError = !validateEmail,
+                    labelText = "Enter Email",
+                    errorMessage = validateNameError,
+                    leadingIconImageVector = Icons.Default.AlternateEmail,
+                    keyboardOptions = KeyboardOptions(
+                        keyboardType = KeyboardType.Text,
+                        imeAction = ImeAction.Next
+                    )
                 )
-
-                TextField(
-                    singleLine = true,
-                    textStyle = MaterialTheme.typography.subtitle1,
+                CustomOutlinedTextField(
                     value = phone,
-                    onValueChange = {
-                        phone = it
-                    },
-                    label = { Text(text = "Enter Contact Number") },
-                    placeholder = { Text(text = "Contact Number") },
-                    modifier = Modifier.background(MaterialTheme.colors.primary)
+                    onValueChangeFun = {phone = it},
+                    showError = !validatePhone,
+                    labelText = "Enter Contact Number",
+                    errorMessage = validateNameError,
+                    leadingIconImageVector = Icons.Default.Phone,
+                    keyboardOptions = KeyboardOptions(
+                        keyboardType = KeyboardType.Text,
+                        imeAction = ImeAction.Next
+                    )
                 )
 
-                TextField(
-                    singleLine = true,
+                CustomOutlinedTextField(
                     value = password,
-                    onValueChange = {
-                        password = it
-                    },
-                    label = { Text(text = "Enter password") },
-                    placeholder = { Text(text = "Password") },
-                    textStyle = MaterialTheme.typography.subtitle1,
-                    modifier = Modifier.background(MaterialTheme.colors.primary),
-                    visualTransformation = if (showPassword) VisualTransformation.None else PasswordVisualTransformation(),
-                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
-                    trailingIcon = {
-                        val image = if (showPassword)
-                            Icons.Filled.Visibility
-                        else Icons.Filled.VisibilityOff
-
-                        // Please provide localized description for accessibility services
-                        val description = if (showPassword) "Hide password" else "Show password"
-
-                        IconButton(onClick = {showPassword = !showPassword}){
-                            Icon(imageVector  = image, description)
-                        }
-                    }
+                    onValueChangeFun = {password = it},
+                    showError = !validatePassword,
+                    labelText = "Enter password",
+                    errorMessage = validateNameError,
+                    leadingIconImageVector = Icons.Default.Password,
+                    keyboardOptions = KeyboardOptions(
+                        keyboardType = KeyboardType.Text,
+                        imeAction = ImeAction.Next
+                    )
                 )
 
                 Button(

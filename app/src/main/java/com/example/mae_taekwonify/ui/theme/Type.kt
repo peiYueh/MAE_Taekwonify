@@ -58,13 +58,13 @@ val CustomTypography = Typography(
     h1 = TextStyle(
         fontFamily = Oswald,
         fontWeight = FontWeight.W900,
-        fontSize = 40.sp,
+        fontSize = 35.sp,
         color = Color.White,
         ),
     h2 = TextStyle(
         fontFamily = Oswald,
         fontWeight = FontWeight.W900,
-        fontSize = 40.sp,
+        fontSize = 35.sp,
         color = PrimaryColorRed,
     ),
     h3 = TextStyle(
@@ -95,7 +95,7 @@ val CustomTypography = Typography(
     body1 = TextStyle(
         fontFamily = Montserrat,
         fontWeight = FontWeight.W900,
-        fontSize = 25.sp,
+        fontSize = 23.sp,
         color = Color.Black
     ),
     body2 = TextStyle(

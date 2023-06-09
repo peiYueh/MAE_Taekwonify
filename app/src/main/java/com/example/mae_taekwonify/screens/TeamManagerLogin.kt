@@ -16,6 +16,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.layout.layoutId
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.AnnotatedString
@@ -30,25 +31,18 @@ import com.example.mae_taekwonify.nav.Routes
 import com.example.mae_taekwonify.ui.theme.MAE_TaekwonifyTheme
 import com.example.mae_taekwonify.R
 import com.example.mae_taekwonify.viewModel.LoginViewModel
+import com.example.mae_taekwonify.widgets.CustomDialogClose
 import com.example.mae_taekwonify.widgets.CustomTopBar
 import kotlinx.coroutines.launch
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun TeamManagerLogin(navController: NavHostController, vm: LoginViewModel = viewModel()){
-//    var email by remember{
-//        mutableStateOf("")
-//    }
-//
-//    var password by remember {
-//        mutableStateOf("")
-//    }
 
     val scope = rememberCoroutineScope()
-    var email by remember { mutableStateOf(TextFieldValue("")) }
-    var password by rememberSaveable { mutableStateOf("") }
     var showPassword by rememberSaveable { mutableStateOf(false) }
-
+    var showLoginError by remember { mutableStateOf(false) }
+    var isLoading by remember { mutableStateOf(false) }
     Scaffold(
         topBar = {
             CustomTopBar(
@@ -94,9 +88,11 @@ fun TeamManagerLogin(navController: NavHostController, vm: LoginViewModel = view
                     onValueChange = {
                         vm.email = it
                     },
-                    label = { Text(text = "Enter email") },
+                    label = { Text(text = stringResource(R.string.email_label)) },
                     placeholder = { Text(text = "Email") },
-                    modifier = Modifier.background(MaterialTheme.colors.primary),
+                    modifier = Modifier
+                        .background(MaterialTheme.colors.primary)
+                        .layoutId("email_text"),
                     singleLine = true,
                     textStyle = MaterialTheme.typography.subtitle1
                 )
@@ -110,7 +106,9 @@ fun TeamManagerLogin(navController: NavHostController, vm: LoginViewModel = view
                     label = { Text(text = "Enter password") },
                     placeholder = { Text(text = "Password") },
                     textStyle = MaterialTheme.typography.subtitle1,
-                    modifier = Modifier.background(MaterialTheme.colors.primary),
+                    modifier = Modifier
+                        .background(MaterialTheme.colors.primary)
+                        .layoutId("password_text"),
                     visualTransformation = if (showPassword) VisualTransformation.None else PasswordVisualTransformation(),
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
                     trailingIcon = {
@@ -126,9 +124,6 @@ fun TeamManagerLogin(navController: NavHostController, vm: LoginViewModel = view
                         }
                     }
                 )
-
-                var showLoginError by remember { mutableStateOf(false) }
-                var isLoading by remember { mutableStateOf(false) }
 
                 Button(
                     onClick = {
@@ -168,6 +163,14 @@ fun TeamManagerLogin(navController: NavHostController, vm: LoginViewModel = view
                     .size(300.dp)
                     .align(alignment = Alignment.End)
             )
+            if (showLoginError) {
+                CustomDialogClose(
+                    alertTitle = stringResource(id = R.string.login_error_header),
+                    alertBody = stringResource(id = R.string.login_error_desc),
+                    onDismissFun = { showLoginError = false },
+                    btnCloseClick = { showLoginError = false }
+                )
+            }
 
         }
 
@@ -175,3 +178,4 @@ fun TeamManagerLogin(navController: NavHostController, vm: LoginViewModel = view
 
 
 }
+

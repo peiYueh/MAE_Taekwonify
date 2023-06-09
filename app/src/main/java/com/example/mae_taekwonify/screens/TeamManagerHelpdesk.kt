@@ -148,7 +148,7 @@ fun TeamManagerHelpdesk(navController: NavHostController, sendChatvm: SendChatSu
                         ){
                             Column(
                                 modifier = Modifier
-                                    .fillMaxWidth(0.7f)
+                                    .fillMaxWidth(0.9f)
                                     .padding(15.dp)
                                     .clip(RoundedCornerShape(25.dp))
                                     .background(MaterialTheme.colors.primary)
@@ -171,7 +171,7 @@ fun TeamManagerHelpdesk(navController: NavHostController, sendChatvm: SendChatSu
                         ){
                             Column(
                                 modifier = Modifier
-                                    .fillMaxWidth(0.7f)
+                                    .fillMaxWidth(0.9f)
                                     .padding(15.dp)
                                     .clip(RoundedCornerShape(25.dp))
                                     .background(MaterialTheme.colors.onPrimary)
@@ -194,7 +194,7 @@ fun TeamManagerHelpdesk(navController: NavHostController, sendChatvm: SendChatSu
                         ){
                             Column(
                                 modifier = Modifier
-                                    .fillMaxWidth(0.7f)
+                                    .fillMaxWidth(0.9f)
                                     .padding(15.dp)
                                     .clip(RoundedCornerShape(25.dp))
                                     .background(MaterialTheme.colors.primary)
@@ -217,7 +217,7 @@ fun TeamManagerHelpdesk(navController: NavHostController, sendChatvm: SendChatSu
                         ){
                             Column(
                                 modifier = Modifier
-                                    .fillMaxWidth(0.7f)
+                                    .fillMaxWidth(0.9f)
                                     .padding(15.dp)
                                     .clip(RoundedCornerShape(25.dp))
                                     .background(MaterialTheme.colors.onPrimary)
@@ -240,7 +240,7 @@ fun TeamManagerHelpdesk(navController: NavHostController, sendChatvm: SendChatSu
                         ){
                             Column(
                                 modifier = Modifier
-                                    .fillMaxWidth(0.7f)
+                                    .fillMaxWidth(0.9f)
                                     .padding(15.dp)
                                     .clip(RoundedCornerShape(25.dp))
                                     .background(MaterialTheme.colors.primary)
@@ -263,7 +263,7 @@ fun TeamManagerHelpdesk(navController: NavHostController, sendChatvm: SendChatSu
                         ){
                             Column(
                                 modifier = Modifier
-                                    .fillMaxWidth(0.7f)
+                                    .fillMaxWidth(0.9f)
                                     .padding(15.dp)
                                     .clip(RoundedCornerShape(25.dp))
                                     .background(MaterialTheme.colors.onPrimary)
