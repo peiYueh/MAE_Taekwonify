@@ -15,9 +15,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.example.mae_taekwonify.R
-import com.example.mae_taekwonify.nav.Routes
 import com.example.mae_taekwonify.widgets.CustomTopBar
-import org.intellij.lang.annotations.JdkConstants.HorizontalAlignment
 
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
@@ -39,8 +37,6 @@ fun MedalTally(navController: NavHostController){
 
         ) {
             Box() {
-
-                //you are viewing by...
                 Text(
                     text = "Medal Tally",
                     style = MaterialTheme.typography.h1,
@@ -265,7 +261,6 @@ fun MedalTally(navController: NavHostController){
                             style = MaterialTheme.typography.body2
                         )
                     }
-
                     Column(
                         horizontalAlignment = Alignment.CenterHorizontally,
                         verticalArrangement = Arrangement.Center

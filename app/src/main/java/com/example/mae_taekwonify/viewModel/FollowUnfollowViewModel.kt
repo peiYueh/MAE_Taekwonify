@@ -24,7 +24,6 @@ class FollowUnfollowViewModel : ViewModel() {
         val dbUsers: CollectionReference = db.collection("FollowingFollowers")
         val followingDetails = Following(uid.toString(),Following, randomID)
 
-
         if (uid != null) {
             dbUsers.document(randomID).set(followingDetails).addOnSuccessListener {
                 Toast.makeText(
@@ -39,7 +38,6 @@ class FollowUnfollowViewModel : ViewModel() {
             }
         }
         return randomID
-
     }
 
     fun deleteFollowingFromFirebase(

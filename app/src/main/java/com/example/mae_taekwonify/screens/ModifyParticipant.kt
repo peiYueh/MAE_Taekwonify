@@ -3,7 +3,6 @@ package com.example.mae_taekwonify.screens
 import android.annotation.SuppressLint
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -12,19 +11,22 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import com.example.mae_taekwondo.viewModel.ParticipantDataViewModel
-import com.example.mae_taekwonify.models.teamName
+import com.example.mae_taekwonify.nav.Routes
 import com.example.mae_taekwonify.widgets.CustomTopBar
+
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun ModifyParticipant(navController: NavHostController, ParticipantName: String, vm: ParticipantDataViewModel = viewModel()){
     val allData = vm.state.value
     var i = 0
+    var modifyDone = false;
     var selectedParticipant = allData[0]
     allData.forEach {
         if(allData[i].Name == ParticipantName){
@@ -32,6 +34,7 @@ fun ModifyParticipant(navController: NavHostController, ParticipantName: String,
         }
         i++
     }
+    var context = LocalContext.current
     var name by rememberSaveable { mutableStateOf(selectedParticipant.Name) }
     var email by rememberSaveable { mutableStateOf(selectedParticipant.EmailAdd) }
     var contactNum by rememberSaveable { mutableStateOf(selectedParticipant.ContactNumber) }
@@ -114,7 +117,20 @@ fun ModifyParticipant(navController: NavHostController, ParticipantName: String,
                 )
                 Button(
                     onClick = {
-                        // TODO SAY REGISTERED
+                        vm.updateParticipantDataToFireStore(
+                            ContactNumber = contactNum,
+                            DOB = selectedParticipant.DOB,
+                            EmailAdd = email,
+                            Name = name,
+                            Password = selectedParticipant.Password,
+                            Team = selectedParticipant.Team,
+                            profilePic = selectedParticipant.profilePic ,
+                            Event = selectedParticipant.Event,
+                            Gender = selectedParticipant.Gender,
+                            id = selectedParticipant.id,
+                            context = context
+                        )
+                        navController.navigate(Routes.ParticipantList.route+ "/Selangor")
                     },
                     colors = ButtonDefaults.outlinedButtonColors(backgroundColor = MaterialTheme.colors.onBackground),
                     modifier = Modifier.padding(bottom = 5.dp)
@@ -123,6 +139,5 @@ fun ModifyParticipant(navController: NavHostController, ParticipantName: String,
                 }
             }
         }
-
     }
 }

@@ -3,11 +3,8 @@ package com.example.mae_taekwonify.screens
 import android.annotation.SuppressLint
 import android.util.Patterns
 import android.widget.Toast
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.text.ClickableText
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
@@ -16,19 +13,13 @@ import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.input.*
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
-import com.example.mae_taekwonify.R
 import com.example.mae_taekwonify.nav.Routes
-import com.example.mae_taekwonify.ui.theme.MAE_TaekwonifyTheme
 import com.example.mae_taekwonify.viewModel.RegisterTeamManagerViewModel
 import com.example.mae_taekwonify.widgets.CustomOutlinedTextField
 import com.example.mae_taekwonify.widgets.CustomTopBar
@@ -38,9 +29,6 @@ import com.google.firebase.auth.FirebaseAuth
 @Composable
 fun TeamManagerSignUp(navController: NavController, auth: FirebaseAuth, vm: RegisterTeamManagerViewModel = viewModel()){
     val context = LocalContext.current
-    val scrollState = rememberScrollState()
-    var showPassword by rememberSaveable { mutableStateOf(false) }
-
     var name by rememberSaveable { mutableStateOf("") }
     var teamName by rememberSaveable { mutableStateOf("") }
     var email by rememberSaveable { mutableStateOf("") }
@@ -52,7 +40,6 @@ fun TeamManagerSignUp(navController: NavController, auth: FirebaseAuth, vm: Regi
     var validateEmail by rememberSaveable { mutableStateOf(true) }
     var validatePhone by rememberSaveable { mutableStateOf(true) }
     var validatePassword by rememberSaveable { mutableStateOf(true) }
-    var isPasswordVisible by rememberSaveable { mutableStateOf(false) }
 
     val validateNameError = "Please input a valid name"
     val validateTeamNameError = "Please input a valid Team name"
@@ -62,14 +49,11 @@ fun TeamManagerSignUp(navController: NavController, auth: FirebaseAuth, vm: Regi
 
     fun validateData(name: String, teamName: String, email:String, phone: String, password: String): Boolean {
         val passwordRegex = "(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,}".toRegex()
-        //val passwordRegex = "(^\\d+\$).([a-zA-z]*).{8,}".toRegex()
-
         validateName = name.isNotBlank()
         validateTeamName = teamName.isNotBlank()
         validateEmail = Patterns.EMAIL_ADDRESS.matcher(email).matches()
         validatePhone = Patterns.PHONE.matcher(phone).matches()
         validatePassword = passwordRegex.matches(password)
-
         return validateName && validateEmail && validatePhone && validatePassword && validateTeamName
     }
 
@@ -155,7 +139,7 @@ fun TeamManagerSignUp(navController: NavController, auth: FirebaseAuth, vm: Regi
                     onValueChangeFun = {teamName = it},
                     showError = !validateTeamName,
                     labelText = "Enter Team Name",
-                    errorMessage = validateNameError,
+                    errorMessage = validateTeamNameError,
                     leadingIconImageVector = Icons.Default.PermIdentity,
                     keyboardOptions = KeyboardOptions(
                         keyboardType = KeyboardType.Text,
@@ -179,7 +163,7 @@ fun TeamManagerSignUp(navController: NavController, auth: FirebaseAuth, vm: Regi
                     onValueChangeFun = {phone = it},
                     showError = !validatePhone,
                     labelText = "Enter Contact Number",
-                    errorMessage = validateNameError,
+                    errorMessage = validatePhoneError,
                     leadingIconImageVector = Icons.Default.Phone,
                     keyboardOptions = KeyboardOptions(
                         keyboardType = KeyboardType.Text,
@@ -192,7 +176,7 @@ fun TeamManagerSignUp(navController: NavController, auth: FirebaseAuth, vm: Regi
                     onValueChangeFun = {password = it},
                     showError = !validatePassword,
                     labelText = "Enter password",
-                    errorMessage = validateNameError,
+                    errorMessage = validatePasswordError,
                     leadingIconImageVector = Icons.Default.Password,
                     keyboardOptions = KeyboardOptions(
                         keyboardType = KeyboardType.Text,
@@ -208,10 +192,8 @@ fun TeamManagerSignUp(navController: NavController, auth: FirebaseAuth, vm: Regi
                     modifier = Modifier.padding(bottom = 5.dp)
                 ) {
                     Text(text = "Register")
-
                 }
             }
-
         }
     }
 }

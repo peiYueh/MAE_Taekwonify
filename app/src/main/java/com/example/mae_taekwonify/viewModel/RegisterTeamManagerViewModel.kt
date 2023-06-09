@@ -16,27 +16,20 @@ class RegisterTeamManagerViewModel(): ViewModel() {
         context: android.content.Context
     ) {
         val uid = FirebaseAuth.getInstance().currentUser?.uid;
-
         val db: FirebaseFirestore = FirebaseFirestore.getInstance()
-
-
         val dbUsers: CollectionReference = db.collection("Team Managers")
-
         val userDetails = TeamManagers(name,teamName,email,phone, uid.toString())
 
         if (uid != null) {
             dbUsers.document(uid).set(userDetails).addOnSuccessListener {
-
                 Toast.makeText(
                     context,
                     "Your data has been added to Firebase Firestore",
                     Toast.LENGTH_SHORT
                 ).show()
-
             }.addOnFailureListener { e ->
                 Toast.makeText(context, "Fail to add data \n$e", Toast.LENGTH_SHORT).show()
             }
         }
-
     }
 }

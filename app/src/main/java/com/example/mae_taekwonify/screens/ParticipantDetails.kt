@@ -3,21 +3,16 @@ package com.example.mae_taekwonify.screens
 import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.autofill.AutofillType
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.input.key.Key.Companion.I
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -25,16 +20,10 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import coil.compose.rememberAsyncImagePainter
 import com.example.mae_taekwondo.viewModel.ParticipantDataViewModel
-import com.example.mae_taekwonify.R
-import com.example.mae_taekwonify.models.Following
-import com.example.mae_taekwonify.models.TeamName
 import com.example.mae_taekwonify.nav.Routes
 import com.example.mae_taekwonify.viewModel.FollowUnfollowViewModel
 import com.example.mae_taekwonify.viewModel.FollowingViewModel
-import com.example.mae_taekwonify.viewModel.LoginViewModel
-import com.example.mae_taekwonify.viewModel.UserDataViewModel
 import com.example.mae_taekwonify.widgets.CustomTopBar
-import com.google.android.play.integrity.internal.x
 import com.google.firebase.auth.FirebaseAuth
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
@@ -57,7 +46,6 @@ fun ParticipantDetails(navController: NavHostController, ParticipantName: String
             modifier = Modifier.fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
-
         ) {
             Box() {
                 Text(
@@ -74,7 +62,6 @@ fun ParticipantDetails(navController: NavHostController, ParticipantName: String
                     letterSpacing = .2.sp
                 )
             }
-
             Box(
                 modifier = Modifier
                     .clip(RoundedCornerShape(50.dp))
@@ -93,8 +80,6 @@ fun ParticipantDetails(navController: NavHostController, ParticipantName: String
                 ) {
                     itemsIndexed(allData) { indexNumber, string ->
                         if (allData[indexNumber].Name == ParticipantName) {
-                            //found the participant
-                            //show image
                             Image(
                                 painter = rememberAsyncImagePainter(allData[indexNumber].profilePic),
                                 contentDescription = null,
@@ -148,9 +133,7 @@ fun ParticipantDetails(navController: NavHostController, ParticipantName: String
                                     var event = allData[indexNumber].Event.split("|")
                                     for (evt in event) {
                                         i++
-                                        // retrieve event full name
                                         when (evt) {
-
                                             "I" -> eventList = "Poomsae Individual"
                                             "p" -> eventList = "Poomsae Pair"
                                             "T" -> eventList = "Poomsae Team"
@@ -164,7 +147,6 @@ fun ParticipantDetails(navController: NavHostController, ParticipantName: String
                                             else -> {
                                                 eventList = "Sparring"
                                             }
-                                            //print out all text
                                         }
                                         Text(
                                             text = eventList,
@@ -175,78 +157,71 @@ fun ParticipantDetails(navController: NavHostController, ParticipantName: String
                                                 },
                                         )
                                     }
-                                        var followStatus by remember { mutableStateOf("FOLLOW") }
-                                        var followID = ""
-                                        for (follow in allFollowers) {
-                                            if (follow.follower == userID && allData[indexNumber].id == follow.following) {
-                                                followID = follow.id
-                                                //user is following this participant
-                                                followStatus = "UNFOLLOW"
-                                                break
-                                            }
+                                    var followStatus by remember { mutableStateOf("FOLLOW") }
+                                    var followID = ""
+                                    for (follow in allFollowers) {
+                                        if (follow.follower == userID && allData[indexNumber].id == follow.following) {
+                                            followID = follow.id
+                                            followStatus = "UNFOLLOW"
+                                            break
                                         }
-                                        //check database if followed, put it as followed, need to add a vm for following
-                                        Column(
-                                            modifier = Modifier.fillMaxWidth().fillMaxHeight(),
-                                            verticalArrangement = Arrangement.Center,
-                                            horizontalAlignment = Alignment.CenterHorizontally
-                                        ) {
-                                            Row(
-                                                horizontalArrangement = Arrangement.spacedBy(10.dp)
-                                            ){
+                                    }
+                                    Column(
+                                        modifier = Modifier.fillMaxWidth().fillMaxHeight(),
+                                        verticalArrangement = Arrangement.Center,
+                                        horizontalAlignment = Alignment.CenterHorizontally
+                                    ) {
+                                        Row(
+                                            horizontalArrangement = Arrangement.spacedBy(10.dp)
+                                        ){
+                                            Button(
+                                                onClick = {
+                                                    if (followStatus == "FOLLOW") {
+                                                        //means follow the ppl
+                                                        followID = followvm.addFollowingToFirebase(
+                                                            Following = allData[indexNumber].id,
+                                                            context = context
+                                                        )
+                                                        //return followID and set follow id
+                                                        followStatus = "UNFOLLOW"
+                                                    } else {
+                                                        //remove the person from database following list
+                                                        followvm.deleteFollowingFromFirebase(
+                                                            followID = followID,
+                                                            context = context
+                                                        )
+                                                        followStatus = "FOLLOW"
+                                                    }
+                                                },
+                                                colors = ButtonDefaults.outlinedButtonColors(
+                                                    backgroundColor = MaterialTheme.colors.onBackground
+                                                ),
+                                                modifier = Modifier
+                                                    .padding(top = 10.dp)
+                                            ) {
+                                                Text(text = followStatus)
+                                            }
+                                            if(allData[indexNumber].Team == "Selangor"){
                                                 Button(
                                                     onClick = {
-                                                        if (followStatus == "FOLLOW") {
-                                                            //means follow the ppl
-                                                            followID = followvm.addFollowingToFirebase(
-                                                                Following = allData[indexNumber].id,
-                                                                context = context
-                                                            )
-                                                            //return followID and set follow id
-                                                            followStatus = "UNFOLLOW"
-                                                        } else {
-                                                            //remove the person from database following list
-                                                            followvm.deleteFollowingFromFirebase(
-                                                                followID = followID,
-                                                                context = context
-                                                            )
-                                                            followStatus = "FOLLOW"
-                                                        }
+                                                        //go to modify page
+                                                        navController.navigate(Routes.ModifyParticipants.route+"/"+allData[indexNumber].Name)
                                                     },
                                                     colors = ButtonDefaults.outlinedButtonColors(
                                                         backgroundColor = MaterialTheme.colors.onBackground
                                                     ),
                                                     modifier = Modifier
                                                         .padding(top = 10.dp)
-                                                ) {
-                                                    Text(text = followStatus)
-                                                }
-
-                                                if(allData[indexNumber].Team == "Selangor"){
-                                                    Button(
-                                                        onClick = {
-                                                            //go to modify page
-                                                            navController.navigate(Routes.ModifyParticipants.route+"/"+allData[indexNumber].Name)
-                                                        },
-                                                        colors = ButtonDefaults.outlinedButtonColors(
-                                                            backgroundColor = MaterialTheme.colors.onBackground
-                                                        ),
-                                                        modifier = Modifier
-                                                            .padding(top = 10.dp)
-                                                    ){
-                                                        Text(text = "MODIFY")
-                                                    }
+                                                ){
+                                                    Text(text = "MODIFY")
                                                 }
                                             }
                                         }
-
+                                    }
                                 }
-
                             }
-
                         }
                     }
-
                 }
             }
         }

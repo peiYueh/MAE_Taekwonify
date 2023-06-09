@@ -1,14 +1,11 @@
 package com.example.mae_taekwonify.viewModel
 
 import android.widget.Toast
-import androidx.compose.ui.text.style.TextDirection.Companion.Content
 import androidx.lifecycle.ViewModel
 import com.example.mae_taekwonify.models.ChatSuppport
-import com.example.mae_taekwonify.models.Following
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
-import kotlin.random.Random
 
 class SendChatSupportViewModel : ViewModel() {
     fun sendChatToFirebase(
@@ -23,8 +20,6 @@ class SendChatSupportViewModel : ViewModel() {
         val chatDetails = ChatSuppport(
             uid.toString(), "admin123",newID,content
         )
-
-
         if (uid != null) {
             dbUsers.document(newID).set(chatDetails).addOnSuccessListener {
                 Toast.makeText(
@@ -32,9 +27,7 @@ class SendChatSupportViewModel : ViewModel() {
                     "Message Sent!",
                     Toast.LENGTH_SHORT
                 ).show()
-
             }.addOnFailureListener { e ->
-
                 Toast.makeText(context, "Fail to Send \n$e", Toast.LENGTH_SHORT).show()
             }
         }

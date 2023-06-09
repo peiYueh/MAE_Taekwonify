@@ -10,14 +10,13 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.example.mae_taekwonify.R
 import com.example.mae_taekwonify.widgets.CustomTopBar
-//,
+
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
@@ -35,7 +34,6 @@ fun EliminationChart(navController: NavHostController, EventCategory: String){
             modifier = Modifier.fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
-
         ) {
             Box() {
                 Text(
@@ -91,11 +89,9 @@ fun EliminationChart(navController: NavHostController, EventCategory: String){
                     }
                 }
             }
-
             var imageID by remember{
                 mutableStateOf(img)
             }
-
             Column(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalAlignment = Alignment.CenterHorizontally,
@@ -114,7 +110,6 @@ fun EliminationChart(navController: NavHostController, EventCategory: String){
                             .fillMaxSize()
                     )
                 }
-
                 Column(
                     modifier = Modifier
                         .padding(10.dp)
@@ -424,8 +419,6 @@ fun EliminationChart(navController: NavHostController, EventCategory: String){
                         )
                     }
                 }
-
-
             }
         }
     }

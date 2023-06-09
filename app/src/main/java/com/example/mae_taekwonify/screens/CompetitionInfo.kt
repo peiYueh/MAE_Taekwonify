@@ -18,7 +18,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.example.mae_taekwonify.R
-import com.example.mae_taekwonify.nav.Routes
 import com.example.mae_taekwonify.widgets.CustomTopBar
 
 
@@ -52,7 +51,6 @@ fun CompetitionInfo(navController: NavHostController){
                     modifier = Modifier.align(Alignment.BottomStart)
                         .padding(start = 3.dp),
                     letterSpacing = .2.sp
-
                 )
             }
             Box(
@@ -133,8 +131,7 @@ fun CompetitionInfo(navController: NavHostController){
                                     onClick = {
                                         context.startActivity(intent)
                                     },
-                                    colors = ButtonDefaults.outlinedButtonColors(backgroundColor = MaterialTheme.colors.onBackground),
-//                                    modifier = Modifier.padding()
+                                    colors = ButtonDefaults.outlinedButtonColors(backgroundColor = MaterialTheme.colors.onBackground)
                                 ) {
                                     Text(text = "📍 Bring Me There 📍")
                                 }

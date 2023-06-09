@@ -10,12 +10,9 @@ import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -23,7 +20,6 @@ import androidx.navigation.NavHostController
 import coil.compose.rememberAsyncImagePainter
 import com.example.mae_taekwondo.viewModel.ParticipantDataViewModel
 import com.example.mae_taekwonify.nav.Routes
-import com.example.mae_taekwonify.viewModel.UserDataViewModel
 import com.example.mae_taekwonify.widgets.CustomTopBar
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
@@ -46,8 +42,6 @@ fun ParticipantList(navController: NavHostController,TeamName: String, vm: Parti
 
         ) {
             Box() {
-
-                //you are viewing by...
                 Text(
                     text = TeamName,
                     style = MaterialTheme.typography.h1,
@@ -76,7 +70,8 @@ fun ParticipantList(navController: NavHostController,TeamName: String, vm: Parti
                                     verticalAlignment = Alignment.CenterVertically,
                                     modifier = Modifier.fillMaxWidth()
                                         .background(MaterialTheme.colors.primary)
-                                        .clickable { navController.navigate(Routes.ParticipantDetails.route+"/"+getData[indexNumber].Name)}
+                                        .clickable { navController.navigate(Routes.ParticipantDetails.route
+                                                +"/"+getData[indexNumber].Name)}
                                 ){
                                     Image(
                                         painter = rememberAsyncImagePainter(getData[indexNumber].profilePic),
@@ -90,13 +85,10 @@ fun ParticipantList(navController: NavHostController,TeamName: String, vm: Parti
                                         style = MaterialTheme.typography.body1,
                                     )
                                 }
-
                             }
                         }
-
                     }
                 }
-
             }
         }
     }

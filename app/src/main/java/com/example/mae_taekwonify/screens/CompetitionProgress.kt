@@ -32,7 +32,6 @@ fun CompetitionProgress(navController: NavHostController){
             modifier = Modifier.fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
-
         ) {
             Box() {
                 Text(
@@ -46,7 +45,6 @@ fun CompetitionProgress(navController: NavHostController){
                     modifier = Modifier.align(Alignment.BottomStart)
                         .padding(start = 3.dp),
                     letterSpacing = .2.sp
-
                 )
             }
             Column(
@@ -109,26 +107,25 @@ fun CompetitionProgress(navController: NavHostController){
                             .background(MaterialTheme.colors.primary)
                             .padding(10.dp)
                     ){
-                        Text(
-                            text = "RING C",
-                            style = MaterialTheme.typography.body1,
-                        )
-                        Text(
-                            text = "Current Bout: 10\n" +
-                                    "Average Duration: 3 mins",
-                            style = MaterialTheme.typography.body2,
-                        )
-                    }
-                    Button(
-                        onClick = {
-                            //navigate to view result page
-                            navController.navigate(Routes.CompetitionResult.route)
-                        },
-                        colors = ButtonDefaults.outlinedButtonColors(backgroundColor = MaterialTheme.colors.onBackground),
-//                                    modifier = Modifier.padding()
-                    ) {
-                        Text(text = "🎖️ View Result 🎖️")
-                    }
+                    Text(
+                        text = "RING C",
+                        style = MaterialTheme.typography.body1,
+                    )
+                    Text(
+                        text = "Current Bout: 10\n" +
+                                "Average Duration: 3 mins",
+                        style = MaterialTheme.typography.body2,
+                    )
+                }
+                Button(
+                    onClick = {
+                        //navigate to view result page
+                        navController.navigate(Routes.CompetitionResult.route)
+                    },
+                    colors = ButtonDefaults.outlinedButtonColors(backgroundColor = MaterialTheme.colors.onBackground)
+                ) {
+                    Text(text = "🎖️ View Result 🎖️")
+                }
             }
         }
     }

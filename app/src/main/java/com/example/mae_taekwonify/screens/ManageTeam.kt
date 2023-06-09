@@ -23,9 +23,7 @@ import com.example.mae_taekwondo.viewModel.ParticipantDataViewModel
 import com.example.mae_taekwonify.R
 import com.example.mae_taekwonify.nav.Routes
 import com.example.mae_taekwonify.viewModel.BoutStatusViewModel
-import com.example.mae_taekwonify.viewModel.FollowingViewModel
 import com.example.mae_taekwonify.widgets.CustomTopBar
-import com.google.firebase.auth.FirebaseAuth
 
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
@@ -35,7 +33,6 @@ fun ManageTeam(navController: NavHostController, vm: BoutStatusViewModel = viewM
     val currentB = 8
     val currentC = 10
     val boutData = vm.state.value
-    val userID = FirebaseAuth.getInstance().currentUser?.uid;
     val allParticipants = participantVm.state.value
     val myTeam = ArrayList<String>()
     for(participant in allParticipants){
@@ -56,12 +53,8 @@ fun ManageTeam(navController: NavHostController, vm: BoutStatusViewModel = viewM
             modifier = Modifier.fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Top
-
         ) {
             Box() {
-
-                //you are viewing by...
-
                 Text(
                     text = "Selangor",
                     style = MaterialTheme.typography.h1,
@@ -73,7 +66,6 @@ fun ManageTeam(navController: NavHostController, vm: BoutStatusViewModel = viewM
                     modifier = Modifier.align(Alignment.BottomStart)
                         .padding(start = 3.dp),
                     letterSpacing = .2.sp
-
                 )
             }
             Column(
@@ -82,11 +74,9 @@ fun ManageTeam(navController: NavHostController, vm: BoutStatusViewModel = viewM
                 modifier = Modifier
                     .fillMaxWidth()
             ) {
-                //participant - ring - bout
                 Column(
                     modifier = Modifier
                         .fillMaxWidth()
-//                        .height(400.dp)
                         .padding(10.dp)
                         .background(MaterialTheme.colors.secondary)
                 ) {
@@ -107,8 +97,6 @@ fun ManageTeam(navController: NavHostController, vm: BoutStatusViewModel = viewM
                     LazyColumn() {
                         itemsIndexed(allParticipants) { indexNumber, string ->
                             if (myTeam.contains(allParticipants[indexNumber].id)) {
-                                //means the participant is followed
-                                //get all participant bout number
                                 var boutRing = 'A'
                                 var nearestBout = 1
                                 for (bout in boutData) {
@@ -165,11 +153,8 @@ fun ManageTeam(navController: NavHostController, vm: BoutStatusViewModel = viewM
                                         style = MaterialTheme.typography.body2,
                                         modifier = Modifier.width(30.dp)
                                     )
-
                                 }
-
                             }
-
                         }
                     }
                 }

@@ -14,7 +14,6 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.core.content.ContextCompat.startActivity
 import androidx.navigation.NavHostController
 import com.example.mae_taekwonify.nav.Routes
 import com.example.mae_taekwonify.widgets.CustomTopBar
@@ -111,8 +110,6 @@ fun AddParticipant(navController: NavHostController){
                     textAlign = TextAlign.Center,
                     style = MaterialTheme.typography.subtitle2
                 )
-//                val intent2 = remember { Intent(Intent.ACTION_VIEW, Uri.parse("taekwondo_malaysia@gmail.com")) }
-
                 Button(
                     onClick = {
                         //open email and send
@@ -130,7 +127,6 @@ fun AddParticipant(navController: NavHostController){
                 ){
                     Text(text = "📧 Send Email 📧")
                 }
-
                 Text(
                     text="Step 3:",
                     textAlign = TextAlign.Center,

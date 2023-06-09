@@ -56,7 +56,7 @@ fun CustomOutlinedTextField(
             modifier = Modifier.padding(bottom = 10.dp),
             label = { Text(text = labelText) },
             singleLine = true,
-            textStyle = MaterialTheme.typography.subtitle1,
+            textStyle = MaterialTheme.typography.button,
             colors = TextFieldDefaults.textFieldColors(
                 focusedIndicatorColor = MaterialTheme.colors.primary,
                 unfocusedIndicatorColor = Color.Transparent
@@ -66,7 +66,7 @@ fun CustomOutlinedTextField(
                 Icon(
                     imageVector = leadingIconImageVector,
                     contentDescription = leadingIconDescription,
-                    tint = if (showError) MaterialTheme.colors.error else MaterialTheme.colors.onSurface
+                    tint = if (showError) MaterialTheme.colors.error else MaterialTheme.colors.primary
                 )
             },
             isError = showError,
@@ -102,74 +102,3 @@ fun CustomOutlinedTextField(
     }
 
 }
-/*    TextField(
-        value = password.value,
-        onValueChange = {password.value = it},
-        label = {
-            Text(text = stringResource(R.string.password_hint))
-        },
-        colors = TextFieldDefaults.textFieldColors(
-            focusedIndicatorColor = Color.Transparent,
-            unfocusedIndicatorColor = Color.Transparent
-        ),
-        shape = RoundedCornerShape(8.dp),
-        visualTransformation = if(showPassword.value)
-        {
-            VisualTransformation.None
-        } else {
-               PasswordVisualTransformation()
-               },
-        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
-        trailingIcon = {
-            if (showPassword.value) {
-                IconButton(onClick = {showPassword.value = false}) {
-                    Icon(
-                        imageVector = Icons.Filled.Visibility,
-                        contentDescription = stringResource(R.string.hide_password)
-                    )
-                }
-            } else {
-                IconButton(onClick = { showPassword.value = true }) {
-                    Icon(
-                        imageVector = Icons.Filled.VisibilityOff,
-                        contentDescription = stringResource(R.string.show_password)
-                    )
-                }
-            }
-        }
-    )*//*    TextField(
-        value = password.value,
-        onValueChange = {password.value = it},
-        label = {
-            Text(text = stringResource(R.string.password_hint))
-        },
-        colors = TextFieldDefaults.textFieldColors(
-            focusedIndicatorColor = Color.Transparent,
-            unfocusedIndicatorColor = Color.Transparent
-        ),
-        shape = RoundedCornerShape(8.dp),
-        visualTransformation = if(showPassword.value)
-        {
-            VisualTransformation.None
-        } else {
-               PasswordVisualTransformation()
-               },
-        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
-        trailingIcon = {
-            if (showPassword.value) {
-                IconButton(onClick = {showPassword.value = false}) {
-                    Icon(
-                        imageVector = Icons.Filled.Visibility,
-                        contentDescription = stringResource(R.string.hide_password)
-                    )
-                }
-            } else {
-                IconButton(onClick = { showPassword.value = true }) {
-                    Icon(
-                        imageVector = Icons.Filled.VisibilityOff,
-                        contentDescription = stringResource(R.string.show_password)
-                    )
-                }
-            }
-        }
-    )*/

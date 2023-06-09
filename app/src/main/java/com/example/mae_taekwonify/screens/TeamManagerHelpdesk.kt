@@ -7,7 +7,6 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
-import androidx.compose.material.icons.materialIcon
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
@@ -23,8 +22,6 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import com.example.mae_taekwonify.R
 import com.example.mae_taekwonify.models.Chat
-import com.example.mae_taekwonify.models.ChatSuppport
-import com.example.mae_taekwonify.nav.Routes
 import com.example.mae_taekwonify.viewModel.ChatViewModel
 import com.example.mae_taekwonify.viewModel.SendChatSupportViewModel
 import com.example.mae_taekwonify.widgets.CustomTopBar
@@ -72,7 +69,6 @@ fun TeamManagerHelpdesk(navController: NavHostController, sendChatvm: SendChatSu
             var viewSelected by remember{
                 mutableStateOf("1")
             }
-
             //two selection (FAQ | Support)
             Row(
                 modifier = Modifier
@@ -94,7 +90,6 @@ fun TeamManagerHelpdesk(navController: NavHostController, sendChatvm: SendChatSu
                         textAlign = TextAlign.Center,
                         style = MaterialTheme.typography.button,
                         modifier = Modifier
-//                            .background(MaterialTheme.colors.secondary)
                             .width(half)
                             .padding(5.dp)
                             .clickable {
@@ -123,8 +118,6 @@ fun TeamManagerHelpdesk(navController: NavHostController, sendChatvm: SendChatSu
                             }
                     )
                 }
-
-
             }
             //if one is selected, display this
             Box(
@@ -280,7 +273,6 @@ fun TeamManagerHelpdesk(navController: NavHostController, sendChatvm: SendChatSu
                             }
                         }
                     }
-
                 }else{
                     //display chat box
                     Column(
@@ -334,7 +326,6 @@ fun TeamManagerHelpdesk(navController: NavHostController, sendChatvm: SendChatSu
                                                     .clip(RoundedCornerShape(25.dp))
                                                     .background(MaterialTheme.colors.primary)
                                                     .padding(10.dp)
-            //                                    .align(Alignment.TopCenter)
                                             ){
                                                 Text(
                                                     text= allChat[indexNumber].Content,
@@ -367,7 +358,6 @@ fun TeamManagerHelpdesk(navController: NavHostController, sendChatvm: SendChatSu
                                     placeholder = { Text(text = "Ask something...") },
                                     modifier = Modifier
                                         .background(MaterialTheme.colors.primary)
-//                                        .padding(10.dp, 0.dp, 3.dp, 10.dp)
                                         .fillMaxWidth()
                                         .height(50.dp)
                                 )
@@ -375,8 +365,7 @@ fun TeamManagerHelpdesk(navController: NavHostController, sendChatvm: SendChatSu
                                     modifier = Modifier
                                         .fillMaxWidth()
                                         .padding(top=5.dp),
-//                                    verticalAlignment = Alignment,
-                                    horizontalArrangement = Arrangement.End,
+                                    horizontalArrangement = Arrangement.End
                                 ){
                                     Image(painter = painterResource(id = R.drawable.send), contentDescription = null,
                                         modifier = Modifier
@@ -391,22 +380,15 @@ fun TeamManagerHelpdesk(navController: NavHostController, sendChatvm: SendChatSu
                                                 allChat.add(Chat("na", "admin123", "na",sendMessage))
                                                 //clear text msg
                                                 sendMessage = ""
-
-
-
                                             }
                                             .size(40.dp)
                                     )
                                 }
-
                             }
-
                         }
-
                     }
                 }
             }
-
         }
     }
 }

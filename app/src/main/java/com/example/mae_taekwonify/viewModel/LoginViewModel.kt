@@ -10,7 +10,7 @@ import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.tasks.await
 
 class LoginViewModel() : ViewModel() {
-    // Variables
+    // Variable
     var email by mutableStateOf("")
     var password by mutableStateOf("")
     suspend fun logInWithEmail(): AuthResult? {

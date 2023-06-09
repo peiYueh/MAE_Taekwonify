@@ -8,7 +8,6 @@ import androidx.compose.foundation.text.ClickableText
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.AlternateEmail
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.runtime.*
@@ -22,13 +21,11 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
-import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import com.example.mae_taekwonify.nav.Routes
-import com.example.mae_taekwonify.ui.theme.MAE_TaekwonifyTheme
 import com.example.mae_taekwonify.R
 import com.example.mae_taekwonify.viewModel.LoginViewModel
 import com.example.mae_taekwonify.widgets.CustomDialogClose
@@ -38,7 +35,6 @@ import kotlinx.coroutines.launch
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun TeamManagerLogin(navController: NavHostController, vm: LoginViewModel = viewModel()){
-
     val scope = rememberCoroutineScope()
     var showPassword by rememberSaveable { mutableStateOf(false) }
     var showLoginError by remember { mutableStateOf(false) }
@@ -96,7 +92,6 @@ fun TeamManagerLogin(navController: NavHostController, vm: LoginViewModel = view
                     singleLine = true,
                     textStyle = MaterialTheme.typography.subtitle1
                 )
-
                 TextField(
                     value = vm.password,
                     onValueChange = {
@@ -124,7 +119,6 @@ fun TeamManagerLogin(navController: NavHostController, vm: LoginViewModel = view
                         }
                     }
                 )
-
                 Button(
                     onClick = {
                         scope.launch {
@@ -141,7 +135,6 @@ fun TeamManagerLogin(navController: NavHostController, vm: LoginViewModel = view
                     colors = ButtonDefaults.outlinedButtonColors(backgroundColor = MaterialTheme.colors.onBackground)
                 ) {
                     Text(text = "Login")
-
                 }
             }
             ClickableText(
@@ -154,7 +147,6 @@ fun TeamManagerLogin(navController: NavHostController, vm: LoginViewModel = view
                     .align(Alignment.End)
                     .padding(end = 35.dp)
             )
-
             Image(
                 painter = painterResource(id = R.drawable.taekwondo_img),
                 contentDescription = stringResource(id = com.example.mae_taekwonify.R.string.taekwondo_img),
@@ -171,11 +163,7 @@ fun TeamManagerLogin(navController: NavHostController, vm: LoginViewModel = view
                     btnCloseClick = { showLoginError = false }
                 )
             }
-
         }
-
     }
-
-
 }
 

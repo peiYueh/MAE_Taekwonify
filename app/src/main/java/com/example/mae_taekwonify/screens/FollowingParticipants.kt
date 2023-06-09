@@ -1,7 +1,6 @@
 package com.example.mae_taekwonify.screens
 
 import android.annotation.SuppressLint
-import android.hardware.biometrics.BiometricManager.Strings
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -17,15 +16,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import coil.compose.rememberAsyncImagePainter
 import com.example.mae_taekwondo.viewModel.ParticipantDataViewModel
-import com.example.mae_taekwonify.models.Following
 import com.example.mae_taekwonify.nav.Routes
 import com.example.mae_taekwonify.viewModel.BoutStatusViewModel
 import com.example.mae_taekwonify.viewModel.FollowingViewModel
@@ -42,7 +38,6 @@ fun FollowingParticipants(navController: NavHostController, vm: BoutStatusViewMo
     val allFollowers = followingvm.state.value
     val userID = FirebaseAuth.getInstance().currentUser?.uid;
     val allParticipants = participantVm.state.value
-    //val context = LocalContext.current
     // get all id followed by the user
     val myFollowings = ArrayList<String>()
     for(follow in allFollowers){
@@ -50,9 +45,6 @@ fun FollowingParticipants(navController: NavHostController, vm: BoutStatusViewMo
             myFollowings.add(follow.following)
         }
     }
-    //get all participants
-
-
     Scaffold(
         topBar = {
             CustomTopBar(
@@ -66,7 +58,6 @@ fun FollowingParticipants(navController: NavHostController, vm: BoutStatusViewMo
             modifier = Modifier.fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
-
         ) {
             Box() {
                 Text(
@@ -98,7 +89,6 @@ fun FollowingParticipants(navController: NavHostController, vm: BoutStatusViewMo
                         .padding(10.dp)
                         .background(MaterialTheme.colors.secondary)
                 ){
-                    //not sure working or not
                     Row(
                         horizontalArrangement = Arrangement.Center,
                         modifier = Modifier
@@ -108,10 +98,8 @@ fun FollowingParticipants(navController: NavHostController, vm: BoutStatusViewMo
                     ){
                         Text(
                             text = "Upcoming Match",
-                            style = MaterialTheme.typography.body1,
-//                            modifier = Modifier.width(200.dp)
+                            style = MaterialTheme.typography.body1
                         )
-
                     }
                     LazyColumn(){
 
@@ -174,16 +162,12 @@ fun FollowingParticipants(navController: NavHostController, vm: BoutStatusViewMo
                                         style = MaterialTheme.typography.body2,
                                         modifier = Modifier.width(50.dp)
                                     )
-
                                 }
-
                             }
-
                         }
                     }
                 }
                 //if the participant is in the following list, list out, direct them to their details
-                //use lazy column
                 Column(
                     modifier = Modifier
                         .fillMaxSize()
@@ -219,7 +203,6 @@ fun FollowingParticipants(navController: NavHostController, vm: BoutStatusViewMo
                         }
                     }
                 }
-
             }
         }
     }
